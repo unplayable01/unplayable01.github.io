@@ -28,7 +28,6 @@
       <a href="#work">Work</a>
       <a href="#more">More</a>
       <a href="#stack">Stack</a>
-      <a href="#writing">Writing</a>
       <a class="pill-white" href="https://github.com/unplayable01" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </div>
@@ -73,7 +72,7 @@
   <!-- TTBEngine -->
   <article class="project">
     <div class="project-media">
-      <img src="ttb-title.jpg" alt="Tilt Tilt Boom title screen running inside the TTBEngine editor" loading="lazy">
+      <video src="ttb-trailer.mp4" poster="ttb-trailer.jpg" controls playsinline preload="metadata" aria-label="Tilt Tilt Boom gameplay trailer"></video>
     </div>
     <div class="project-body">
       <div class="meta mono"><span class="badge">Technical Lead</span><span>2025–26 · Team project · GAM200</span></div>
@@ -93,7 +92,7 @@
         <li><b>Build &amp; ship</b>: split engine / editor / game into separate CMake targets, a build-size analyzer, and an Inno Setup installer with FMOD and licences.</li>
       </ul>
       <div class="tags"><span>C++</span><span>OpenGL</span><span>ECS</span><span>ImGui</span><span>Lua</span><span>FMOD</span><span>CMake</span><span>FreeType</span></div>
-      <p class="note mono">Private school repository · demo video available on request</p>
+      <p class="note mono">Private school repository</p>
     </div>
   </article>
 
@@ -166,8 +165,8 @@
 
   <!-- S&H -->
   <article class="project">
-    <div class="project-media pixel">
-      <img src="sh-scene.png" alt="Pixel-art meadow scene from S&H with the main house and a dog, all drawn in Aseprite" loading="lazy">
+    <div class="project-media">
+      <img src="sh-gameplay.jpg" alt="S&amp;H gameplay: player and NPCs outside the S&amp;H house, with health, hunger and hydration bars and an item hotbar" loading="lazy">
     </div>
     <div class="project-body">
       <div class="meta mono"><span class="badge">Gameplay &amp; Art</span><span>2026 · Team of 3 · Godot</span></div>
@@ -193,7 +192,7 @@
 <section id="more" class="wrap section">
   <div class="section-head">
     <p class="mono label">02 — More projects</p>
-    <h2>Smaller builds and coursework.</h2>
+    <h2>Another one I'm proud of.</h2>
   </div>
 
   <article class="project compact">
@@ -213,37 +212,6 @@
       <p class="note mono">407 commits · 175 of them mine (top committer)</p>
     </div>
   </article>
-
-  <ul class="rows">
-    <li>
-      <div class="row-main">
-        <h3>Multiplayer UDP Fighting Game</h3>
-        <p>2–4 player fighter over UDP with an authoritative server. Clients send inputs and render snapshots; reliable ACKed messages for round-over events, in-game chat, live scores and a persistent top-5 leaderboard.</p>
-      </div>
-      <div class="row-meta mono"><span>C++ · Networking</span><span>2026</span></div>
-    </li>
-    <li>
-      <div class="row-main">
-        <h3>Comeback</h3>
-        <p>My first team game. 2D action with patrolling enemies that fire randomised projectiles, a timer built for a leaderboard, menus, and game-state transitions.</p>
-      </div>
-      <div class="row-meta mono"><span>C · Team Nugglets</span><span>2024</span></div>
-    </li>
-    <li>
-      <div class="row-main">
-        <h3>Holiday Game</h3>
-        <p>A holiday side project: built the game-state manager, a UI system for the main menu, and file parsing for a rock-paper-scissors mode.</p>
-      </div>
-      <div class="row-meta mono"><span>C++ · RapidJSON</span><span>2025</span></div>
-    </li>
-    <li>
-      <div class="row-main">
-        <h3>Shape &amp; Hole Detection</h3>
-        <p>Data-structures assignment that analyses grid shapes, such as blobs with holes and lakes with islands, verified against a suite of test cases.</p>
-      </div>
-      <div class="row-meta mono"><span>C++ · DSA</span><span>2026</span></div>
-    </li>
-  </ul>
 </section>
 
 <!-- ============ STACK ============ -->
@@ -258,25 +226,6 @@
     <div><h4 class="mono">Mobile &amp; vision</h4><p>Kotlin, CameraX, MediaPipe, OpenCV, JNI / native C++ on Android</p></div>
     <div><h4 class="mono">Tools &amp; craft</h4><p>Python automation, Aseprite pixel art, Jira, Doxygen, Inno Setup</p></div>
   </div>
-</section>
-
-<!-- ============ WRITING ============ -->
-<section id="writing" class="wrap section">
-  <div class="section-head">
-    <p class="mono label">04 — Writing</p>
-    <h2>Opinions about game AI.</h2>
-  </div>
-  <article class="essay">
-    <div class="meta mono"><span class="badge">Essay</span><span>Game AI</span></div>
-    <h3>10 Things I Hate About Your Game AI</h3>
-    <p>
-      A player's-eye list of where game AI breaks the illusion: enemies with bottomless ammo,
-      horror monsters you can time with a stopwatch, attack animations that lie about their hit-frames,
-      NPCs that T-pose when two commands collide, and tutorial deer that won't let you learn.
-      Examples from Assassin's Creed Syndicate, Dredge, Clair Obscur: Expedition 33 and Planet Zoo.
-    </p>
-    <blockquote>“When the monsters become a predictable set of IF/THEN statements, I don't feel scared anymore.”</blockquote>
-  </article>
 </section>
 
 <!-- ============ CONTACT ============ -->
