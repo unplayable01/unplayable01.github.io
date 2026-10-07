@@ -172,6 +172,18 @@ h4 { margin: 0 0 12px; font-size: 12px; font-weight: 500; color: var(--ash); tex
 .rows p { margin: 0; font-size: 15px; line-height: 1.6; max-width: 640px; }
 .row-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; font-size: 12px; color: var(--ash); padding-top: 4px; }
 
+.rows h3 .dim { font-weight: 400; }
+
+/* Beyond code */
+.life { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.life-card { background: var(--carbon); border-radius: var(--r-card); overflow: hidden; box-shadow: inset 0 0 0 1px var(--graphite); display: flex; flex-direction: column; }
+.life-card img, .life-card .photo { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-bottom: 1px solid var(--graphite); }
+.photo { display: grid; place-items: center; background: radial-gradient(circle at 50% 35%, rgba(228,242,34,.07), transparent 65%), var(--obsidian); }
+.photo span { font-size: 64px; color: var(--smoke); line-height: 1; }
+.life-body { padding: 24px; }
+.life-body h3 { font-size: 22px; margin-bottom: 10px; }
+.life-body p { margin: 0; font-size: 15px; line-height: 1.6; color: var(--fog); }
+
 /* Stack */
 .stack { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--graphite); }
 .stack > div { padding: 28px 32px 28px 0; border-bottom: 1px solid var(--graphite); }
@@ -196,6 +208,7 @@ h4 { margin: 0 0 12px; font-size: 12px; font-weight: 500; color: var(--ash); tex
   .project-media { position: static; }
   .rows li { grid-template-columns: 1fr; gap: 12px; }
   .row-meta { flex-direction: row; align-items: center; gap: 12px; }
+  .life { grid-template-columns: 1fr; max-width: 560px; }
 }
 @media (max-width: 640px) {
   :root { --gutter: 16px; --section: 80px; }
