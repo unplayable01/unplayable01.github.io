@@ -8,16 +8,18 @@
 <meta property="og:title" content="Harine Sumen — Developer">
 <meta property="og:description" content="Engine architecture enthusiast. Part-time sanity tester.">
 <meta property="og:image" content="ttb-editor.jpg">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%237C3AED'/%3E%3Cpath d='M9 8v16M23 8v16M9 16h14' stroke='%23ffffff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#eeeeee">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23222222'/%3E%3Cpath d='M10 24L22 8' stroke='%23eeeeee' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <script>
   (function () {
     var d = document.documentElement; d.classList.add('js');
     try { var t = localStorage.getItem('theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t); } catch (e) {}
   })();
 </script>
-<link rel="stylesheet" href="style.css?v=20261010b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css?v=20261013t">
 </head>
 <body>
 
@@ -26,7 +28,7 @@
 <header class="nav">
   <div class="nav-inner">
     <a class="logo" href="#top" aria-label="Harine — home">
-      <span class="glyph" aria-hidden="true"></span>Harine
+      <span class="slash" aria-hidden="true"></span>harine
     </a>
     <nav aria-label="Sections">
       <a href="#work">Work</a>
@@ -47,25 +49,40 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero wrap">
-  <p class="eyebrow mono"><span class="dot" aria-hidden="true"></span>Harine · Singapore · DigiPen</p>
-  <h1>I learn<br><span class="dim">by building.</span></h1>
-  <p class="lede">
-    Engine architecture enthusiast, part-time sanity tester. I've been technical lead on a
-    C++ ECS engine, run the server and CI/CD for an Android computer-vision app,
-    and built a face-recognition guard dog for my own PC on the side. Off the keyboard I teach
-    calculus, play competitive chess and write music.
-  </p>
-  <div class="cta-row">
-    <a class="btn-primary" href="#work">See the work</a>
-    <a class="btn-ghost" href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-    <a class="btn-ghost" href="https://www.linkedin.com/in/harinesumen/" target="_blank" rel="noopener">LinkedIn ↗</a>
+  <div class="hero-text">
+    <p class="eyebrow">CS · RTIS · DigiPen × SIT · Singapore</p>
+    <p class="hey">Hey, I'm</p>
+    <h1>Harine.</h1>
+    <p class="tagline">I build engines, tools &amp; games.</p>
+    <p class="roles">Engine architecture · Real-time systems · Game audio</p>
+    <p class="lede">Engine architecture enthusiast, part-time sanity tester. I've been tech lead on a C++ ECS engine, run the server and CI/CD for an Android computer-vision app, and built a face-recognition guard dog for my own PC. Off the keyboard I teach calculus, play competitive chess and write music. <em>A professional beginner at everything.</em></p>
+    <div class="cta-row">
+      <a class="btn-primary" href="#soundtrack"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13l11-6.5z"/></svg>Play Tilt Tilt Boom</a>
+      <a class="btn-ghost arrow" href="#work">View projects</a>
+      <a class="btn-ghost arrow" href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </div>
+  <div class="mosaic" aria-label="A wall of my work">
+    <a class="tile m1" href="#soundtrack"><img src="ttb-title.jpg" alt="Tilt Tilt Boom title screen"><span class="cap">Tilt Tilt Boom</span></a>
+    <span class="tile slash-tile m2" aria-hidden="true"></span>
+    <a class="tile m3" href="#work"><video src="ttb-editor.mp4" poster="ttb-editor.jpg" autoplay muted loop playsinline aria-label="TTBEngine level editor in action"></video><span class="cap">TTBEngine editor</span></a>
+    <a class="tile m4" href="#beyond"><img src="chess-medals.jpg" alt="SIT chess team with medals and trophy" style="object-position:center 30%"><span class="cap">SIT Mindsports</span></a>
+    <a class="tile m5" href="#work"><img src="sh-gameplay.jpg" alt="S&amp;H gameplay"><span class="cap">S&amp;H</span></a>
+    <span class="tile slash-tile light m6" aria-hidden="true"></span>
+    <a class="tile m7" href="#beyond"><img src="helix-shield.jpg" alt="Helix orientation team" style="object-position:center 55%"><span class="cap">FYE Helix</span></a>
+    <a class="tile m8" href="#more"><img src="egg-sky.jpg" alt="Egg the Balloon gameplay"><span class="cap">Egg the Balloon</span></a>
+    <p class="mosaic-note">Let's build something that goes boom.</p>
   </div>
 
-  <figure class="hero-media fade-in">
-    <div class="chrome mono" aria-hidden="true"><span></span><span></span><span></span>TTBEngine — Level Editor</div>
-    <video src="ttb-editor.mp4" poster="ttb-editor.jpg" autoplay muted loop playsinline
-           aria-label="Clip of the TTBEngine ImGui level editor: hierarchy, scene view, inspector and prefab browser"></video>
-  </figure>
+  <a class="now fade-in" href="#soundtrack" aria-label="Jump to the Tilt Tilt Boom soundtrack">
+    <div>
+      <div class="np-label"><span class="slash" aria-hidden="true"></span>Now playing</div>
+      <h2>Tilt Tilt Boom!</h2>
+      <p>Tilt the whole level to defuse a bomb. I architected our engine, TTBEngine, and wrote the soundtrack.</p>
+      <span class="inline-link">Listen to the soundtrack ↗</span>
+    </div>
+    <img src="ttb-trailer.jpg" alt="Tilt Tilt Boom gameplay" loading="lazy">
+  </a>
 
   <dl class="stats fade-in">
     <div><dt>840+</dt><dd>of my commits across 9 team &amp; solo repos</dd></div>
@@ -77,8 +94,8 @@
 <!-- ============ FEATURED ============ -->
 <section id="work" class="wrap section">
   <div class="section-head fade-in">
-    <p class="mono label">01 — Selected work</p>
-    <h2>Things I've built, and the parts that were mine.</h2>
+    <p class="label">01 / Selected work</p>
+    <h2>Featured projects</h2>
   </div>
 
   <!-- TTBEngine -->
@@ -204,8 +221,8 @@
 <!-- ============ MORE WORK ============ -->
 <section id="more" class="wrap section">
   <div class="section-head fade-in">
-    <p class="mono label">02 — More projects</p>
-    <h2>Another one I'm proud of.</h2>
+    <p class="label">02 / More work</p>
+    <h2>One more I'm proud of</h2>
   </div>
 
   <article class="project compact fade-in">
@@ -230,8 +247,8 @@
 <!-- ============ EXPERIENCE ============ -->
 <section id="experience" class="wrap section">
   <div class="section-head fade-in">
-    <p class="mono label">03 — Experience &amp; education</p>
-    <h2>Where I've worked and studied.</h2>
+    <p class="label">03 / Experience</p>
+    <h2>Where I've worked &amp; studied</h2>
   </div>
   <ul class="rows fade-in">
     <li>
@@ -268,8 +285,8 @@
 <!-- ============ BEYOND CODE ============ -->
 <section id="beyond" class="wrap section">
   <div class="section-head fade-in">
-    <p class="mono label">04 — Beyond code</p>
-    <h2>Chess boards, freshmen and soundtracks.</h2>
+    <p class="label">04 / Beyond code</p>
+    <h2>Chess, freshmen &amp; soundtracks</h2>
   </div>
   <div class="life">
     <article class="life-card fade-in">
@@ -304,7 +321,7 @@
         </div>
         <button class="g-btn g-prev" type="button" aria-label="Previous photo">&#8249;</button>
         <button class="g-btn g-next" type="button" aria-label="Next photo">&#8250;</button>
-        <span class="g-count" aria-live="polite">1 / 3</span>
+        <span class="g-count" aria-live="polite">1 / 5</span>
       </div>
       <div class="life-body">
         <div class="meta mono"><span class="badge">Assistant Head Facilitator</span><span>2025–26</span></div>
@@ -332,9 +349,10 @@
 <!-- ============ STACK ============ -->
 <section id="stack" class="wrap section">
   <div class="section-head fade-in">
-    <p class="mono label">05 — Stack</p>
-    <h2>What I reach for.</h2>
+    <p class="label">05 / Stack</p>
+    <h2>Skills &amp; stack</h2>
   </div>
+  <div class="skills fade-in"><h3>Skills</h3><div class="sk c1"><i>C</i><span>C</span></div><div class="sk c2"><i>C++</i><span>C++</span></div><div class="sk c3"><i>Go</i><span>Go</span></div><div class="sk c4"><i>Py</i><span>Python</span></div><div class="sk c5"><i>JS</i><span>JavaScript</span></div><div class="sk c6"><i>TS</i><span>TypeScript</span></div><div class="sk c7"><i>Jv</i><span>Java</span></div><div class="sk c8"><i>Lx</i><span>Linux</span></div><div class="sk c9"><i>$_</i><span>Bash</span></div></div>
   <div class="stack fade-in">
     <div><h4 class="mono">Engines &amp; graphics</h4><p>C++, OpenGL, ECS architecture, ImGui, Godot, Lua, FMOD, CMake</p></div>
     <div><h4 class="mono">Backend &amp; infra</h4><p>Go, SQLite, Jenkins, Linux servers, Nginx, Git LFS, Gitea, Tailscale</p></div>
@@ -345,13 +363,20 @@
 
 <!-- ============ CONTACT ============ -->
 <section id="contact" class="wrap section contact">
-  <h2>Building something with an engine in it?</h2>
-  <p class="lede">I'm happy to talk about engines, tools, backend plumbing or why your enemy AI feels unfair.</p>
-  <div class="cta-row">
-    <a class="btn-primary" href="mailto:harinesumen@gmail.com">Email me</a>
-    <a class="btn-ghost" href="https://www.linkedin.com/in/harinesumen/" target="_blank" rel="noopener">LinkedIn ↗</a>
-    <a class="btn-ghost" href="https://github.com/unplayable01" target="_blank" rel="noopener">GitHub ↗</a>
-    <a class="btn-ghost" href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+  <div class="contact-card fade-in">
+    <div>
+      <h2>Let's make something<br><span class="boom">go boom.</span></h2>
+      <p class="lede">Happy to talk about engines, tools, backend plumbing, or why your enemy AI feels unfair. Open to internships &amp; collaborations.</p>
+      <div class="cta-row">
+        <a class="btn-primary" href="mailto:harinesumen@gmail.com">Email me</a>
+        <a class="btn-ghost" href="https://www.linkedin.com/in/harinesumen/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn-ghost" href="https://github.com/unplayable01" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="contact-lines">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 8l9 6 9-6"/></svg>harinesumen@gmail.com</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Singapore</span>
+    </div>
   </div>
 </section>
 
@@ -367,7 +392,7 @@
     var root = document.documentElement;
     var btn = document.querySelector('[data-theme-toggle]');
     var mq = window.matchMedia('(prefers-color-scheme: dark)');
-    function current() { return root.getAttribute('data-theme') || (mq.matches ? 'dark' : 'light'); }
+    function current() { return root.getAttribute('data-theme') || 'light'; }
     function sync() { if (btn) btn.setAttribute('aria-pressed', current() === 'dark'); }
     if (btn) btn.addEventListener('click', function () {
       var next = current() === 'dark' ? 'light' : 'dark';
