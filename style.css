@@ -705,3 +705,36 @@ body { letter-spacing: 0.005em; }
 /* more headroom above Harine */
 .hero-full .layer-photo { object-position: 50% 0%; transform-origin: 50% 100%; }
 @media (max-width: 640px) { .hero-full .layer-photo { object-position: 50% 0%; } }
+
+/* ---------- Detail pages ---------- */
+.back-link { display: inline-block; margin-bottom: 18px; color: var(--violet); font-weight: 600; font-size: 15px; }
+.back-link:hover { text-decoration: underline; }
+.page-hero .meta { margin-top: 18px; }
+.detail-intro { max-width: 680px; }
+.detail-intro p { color: var(--stone); font-size: 18px; line-height: 1.6; margin: 10px 0 0; }
+.photo-grid { columns: 3 300px; column-gap: 14px; }
+.ph { margin: 0 0 14px; break-inside: avoid; }
+.ph-open { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: var(--r); overflow: hidden; }
+.ph-open img { width: 100%; height: auto; display: block; transition: transform .6s var(--ease); }
+.ph-open:hover img { transform: scale(1.04); }
+.lightbox { position: fixed; inset: 0; z-index: 2000; background: rgba(24,14,26,.94); display: grid; place-items: center; padding: 56px 16px; }
+.lightbox[hidden] { display: none; }
+.lightbox img { max-width: 100%; max-height: 100%; border-radius: 12px; object-fit: contain; }
+.lb-btn { position: absolute; width: 46px; height: 46px; border-radius: 50%; border: 0; background: rgba(255,255,255,.12); color: #fff; font-size: 24px; cursor: pointer; }
+.lb-btn:hover { background: rgba(255,255,255,.24); }
+.lb-close { top: 14px; right: 14px; } .lb-prev { left: 14px; top: 50%; translate: 0 -50%; } .lb-next { right: 14px; top: 50%; translate: 0 -50%; }
+.lb-count { position: absolute; bottom: 16px; left: 50%; translate: -50% 0; color: rgba(255,255,255,.75); font-size: 13px; }
+.sound-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.sound-cover { border-radius: var(--r); position: relative; }
+@media (max-width: 800px) { .sound-wrap { grid-template-columns: 1fr; } }
+/* Activities cards now link out */
+.card-cover { position: relative; display: block; aspect-ratio: 4 / 3; overflow: hidden; background: #000; }
+.card-cover img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
+.card-cover:hover img { transform: scale(1.05); }
+.cover-cta { position: absolute; right: 12px; bottom: 12px; background: rgba(255,255,255,.92); color: var(--wine); font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; }
+a.cover { display: block; }
+.life-body h3 a:hover { color: var(--wine); }
+.more-link { display: inline-block; margin-top: 12px; font-size: 14.5px; }
+.t-link { display: block; color: inherit; }
+.t-thumb { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin-bottom: 16px; }
+.lightbox img { max-width: calc(100vw - 130px); max-height: calc(100vh - 112px); width: auto; height: auto; } @media (max-width: 640px) { .lightbox img { max-width: 100%; } }

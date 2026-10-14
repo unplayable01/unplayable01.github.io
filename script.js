@@ -147,3 +147,22 @@
   if (miniBtn) miniBtn.addEventListener('click', function () { if (cur > -1) play(cur); });
   document.querySelectorAll('[data-play-ttb]').forEach(function (b) { b.addEventListener('click', function () { play(cur > -1 ? cur : 0); }); });
 })();
+
+/* Photo lightbox for detail pages */
+(function () {
+  var btns = Array.prototype.slice.call(document.querySelectorAll('.ph-open'));
+  if (!btns.length) return;
+  var lb = document.createElement('div'); lb.className = 'lightbox'; lb.hidden = true; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-modal', 'true');
+  lb.innerHTML = '<img alt=""><button class="lb-btn lb-close" aria-label="Close">×</button><button class="lb-btn lb-prev" aria-label="Previous photo">‹</button><button class="lb-btn lb-next" aria-label="Next photo">›</button><span class="lb-count"></span>';
+  document.body.appendChild(lb);
+  var img = lb.querySelector('img'), count = lb.querySelector('.lb-count'), cur = 0, last = null;
+  function show(i) { cur = (i + btns.length) % btns.length; var b = btns[cur]; img.src = b.dataset.full; img.alt = b.querySelector('img').alt; count.textContent = (cur + 1) + ' / ' + btns.length; }
+  function open(i) { last = document.activeElement; show(i); lb.hidden = false; document.body.style.overflow = 'hidden'; lb.querySelector('.lb-close').focus(); }
+  function close() { lb.hidden = true; document.body.style.overflow = ''; if (last) last.focus(); }
+  btns.forEach(function (b, i) { b.addEventListener('click', function () { open(i); }); });
+  lb.querySelector('.lb-close').addEventListener('click', close);
+  lb.querySelector('.lb-prev').addEventListener('click', function () { show(cur - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', function () { show(cur + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+})();
