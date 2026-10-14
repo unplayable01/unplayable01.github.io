@@ -414,3 +414,20 @@ body { letter-spacing: 0.005em; }
   .nav-inner { gap: 8px; }
 }
 @media (max-width: 380px) { .logo { font-size: 0; gap: 0; } .logo .logo-mark { font-size: 14px; } }
+
+/* ---------- About (home) ---------- */
+.about { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 56px; align-items: center; }
+.about-photo { position: relative; margin: 0; border-radius: 24px; overflow: visible; }
+.about-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 35%; border-radius: 24px; }
+.about-sticker { position: absolute; left: -14px; bottom: 28px; transform: rotate(-4deg); background: var(--wine); color: var(--lilac); font-family: var(--display); font-weight: 700; font-size: 15px; padding: 10px 16px; border-radius: 14px; box-shadow: 0 10px 30px -12px rgba(66,29,36,.6); }
+.about-body h2 { margin-bottom: 20px; }
+.about-body p { margin: 0 0 14px; color: var(--stone); font-size: 16.5px; line-height: 1.65; max-width: 620px; }
+.about-body .about-lede { color: var(--ink); font-size: 19px; line-height: 1.55; }
+.about-tools { font-weight: 600; color: var(--violet) !important; }
+.facts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 22px 0 0; max-width: 620px; }
+.facts div { background: var(--paper); border: 1px solid var(--mist); border-radius: 14px; padding: 12px 16px; }
+.facts dt { font-size: 12px; color: var(--stone); }
+.facts dd { margin: 2px 0 0; font-weight: 600; font-size: 15px; }
+.stats-proj { padding-top: 40px; }
+@media (max-width: 900px) { .about { grid-template-columns: 1fr; gap: 36px; } .about-photo { max-width: 420px; } }
+@media (max-width: 640px) { .facts { grid-template-columns: 1fr; } .about-sticker { left: 10px; } }
