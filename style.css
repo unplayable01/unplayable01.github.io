@@ -476,3 +476,41 @@ body { letter-spacing: 0.005em; }
 /* Hero: centred subject, sharper cut-out */
 .stage .layer-person { left: 50%; bottom: -30%; height: 104%; image-rendering: auto; }
 @media (max-width: 640px) { .stage .layer-person { left: 50%; bottom: -24%; height: 98%; } }
+
+/* ---------- Full-screen hero (home) ---------- */
+.hero.hero-full { padding: 0; max-width: none; }
+.hero-full .stage { margin: 0; height: 100vh; height: 100svh; min-height: 620px; border-radius: 0; }
+.hero-full .stage::after { display: none; }
+.hero-shade { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(20,22,24,.55) 0%, rgba(20,22,24,.18) 38%, rgba(20,22,24,0) 55%),
+              linear-gradient(90deg, rgba(20,22,24,.45) 0%, rgba(20,22,24,0) 45%),
+              linear-gradient(0deg, rgba(20,22,24,.45) 0%, rgba(20,22,24,0) 25%); }
+.hero-full .layer-person { left: 50%; bottom: -40%; height: 100%; }
+.hero-full .hero-head { position: absolute; z-index: 4; left: 0; right: 0; top: 0; padding-top: 120px; display: block; pointer-events: none; }
+.hero-full .hero-head > * { pointer-events: auto; max-width: 560px; }
+.hero-full .kicker { color: rgba(255,255,255,.82); margin-bottom: 14px; }
+.hero-full h1 { color: #fff; font-size: clamp(38px, 4.6vw, 64px); text-shadow: 0 2px 24px rgba(0,0,0,.25); }
+.hero-full .hero-side { margin-top: 18px; max-width: 460px; }
+.hero-full .hero-side p { color: rgba(255,255,255,.88); font-size: 16px; }
+.hero-full .hero-side .vlink { color: #E4DAFF; }
+.hero-full .g2 { display: none; }
+.hero-full .g1 { left: auto; right: 4%; top: 22%; }
+.hero-full .g3 { left: auto; right: 4%; bottom: 10%; }
+.hero-full .g4 { right: auto; left: 5%; top: auto; bottom: 10%; }
+.home .nav:not(.scrolled) .logo, .home .nav:not(.scrolled) nav > a:not([class]) { color: #fff; }
+.home .nav:not(.scrolled) nav > a:not([class])::after { background: #fff; }
+.home .nav:not(.scrolled) .btn-lilac { background: rgba(255,255,255,.88); }
+@media (max-width: 1000px) {
+  .hero-full .hero-head > * { max-width: 460px; }
+  .hero-full .g1 { display: none; }
+}
+@media (max-width: 640px) {
+  .hero-full .stage { min-height: 700px; }
+  .hero-full .hero-head { padding-top: 92px; }
+  .hero-full .hero-side p { font-size: 15px; }
+  .hero-full .hero-side .cta-row { display: none; }
+  .hero-full .layer-person { bottom: -34%; height: 82%; }
+  .hero-full .g3 { display: none; }
+  .hero-full .g4 { left: 12px; right: 12px; bottom: 12px; }
+}
+@media (min-width: 641px) and (max-height: 800px) { .hero-full .g4 { left: auto; right: 4%; bottom: auto; top: 46%; } .hero-full .g3 { bottom: 6%; } .hero-full .g1 { top: 18%; } }

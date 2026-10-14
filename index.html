@@ -15,9 +15,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@200..800&display=swap">
 <link rel="preload" href="chicoree-bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=20261014i">
+<link rel="stylesheet" href="style.css?v=20261014j">
 </head>
-<body>
+<body class="home">
 
 <a class="skip" href="#top">Skip to content</a>
 <div class="progress" aria-hidden="true"><i></i></div>
@@ -38,8 +38,12 @@
 <main id="top">
 
 <!-- ============ HERO ============ -->
-<section class="hero wrap">
-  <div class="hero-head">
+<section class="hero hero-full">
+  <div class="stage reveal" data-stage>
+    <img class="stage-layer layer-bg" src="hero-forest.jpg" alt="" data-depth="0.012" data-scroll="0.14" data-zoom="0.0003">
+    <img class="stage-layer layer-person" src="hero-me-hd.webp" alt="Harine smiling in a black hoodie and beanie on a misty forest trail" data-depth="0.03" data-scroll="0.08">
+    <div class="hero-shade" aria-hidden="true"></div>
+    <div class="hero-head wrap">
     <p class="kicker reveal">CS · Real-Time Interactive Simulation · DigiPen × SIT · Singapore</p>
     <h1 class="split">Hey, I'm Harine. I build engines, tools &amp; games.</h1>
     <div class="hero-side reveal">
@@ -50,10 +54,6 @@
       </div>
     </div>
   </div>
-
-  <div class="stage reveal" data-stage>
-    <img class="stage-layer layer-bg" src="hero-forest.jpg" alt="" data-depth="0.012" data-scroll="0.14" data-zoom="0.0003">
-    <img class="stage-layer layer-person" src="hero-me-hd.webp" alt="Harine smiling in a black hoodie and beanie on a misty forest trail" data-depth="0.03" data-scroll="0.08">
     <div class="glass g1" data-depth="0.05">
       <div class="g-row"><span class="dot ok"></span><b>jenkins</b><span class="muted">pinpoint · master</span></div>
       <div class="g-row"><span class="muted">go vet ✓ &nbsp; go test ✓ &nbsp; deploy ✓</span></div>
