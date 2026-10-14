@@ -522,3 +522,19 @@ body { letter-spacing: 0.005em; }
 /* Full-screen hero: show the photo instantly; only the person, text and cards animate in */
 .js .hero-full .stage.reveal { opacity: 1; transform: none; transition: none; }
 .js .hero-full .hero-head .reveal { transition-delay: .15s; }
+
+/* Hero v3: single high-res photo of Harine, centred */
+.hero-full .layer-bg { object-position: 50% 30%; }
+.hero-shade { background:
+  linear-gradient(180deg, rgba(20,22,24,.55) 0%, rgba(20,22,24,.12) 30%, rgba(20,22,24,0) 50%),
+  linear-gradient(90deg, rgba(20,22,24,.55) 0%, rgba(20,22,24,.15) 32%, rgba(20,22,24,0) 42%),
+  linear-gradient(0deg, rgba(20,22,24,.35) 0%, rgba(20,22,24,0) 22%); }
+.hero-full .hero-head > * { max-width: 470px; }
+.hero-full h1 { font-size: clamp(36px, 4vw, 58px); }
+@media (max-width: 1100px) { .hero-full .layer-bg { object-position: 52% 30%; } }
+@media (max-width: 640px) {
+  .hero-full .layer-bg { object-position: 50% 30%; }
+  .hero-full .hero-head { top: auto; bottom: 90px; padding-top: 0; }
+  .hero-full .hero-side p { display: none; }
+  .hero-shade { background: linear-gradient(0deg, rgba(20,22,24,.75) 0%, rgba(20,22,24,.2) 45%, rgba(20,22,24,0) 60%), linear-gradient(180deg, rgba(20,22,24,.45) 0%, rgba(20,22,24,0) 18%); }
+}
