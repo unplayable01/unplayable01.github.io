@@ -382,3 +382,7 @@ h3 { letter-spacing: 0; }
 .tabs [role=tab], .tabs [role=tab][aria-selected=true] { font-weight: 700; }
 .split .w { padding-bottom: .12em; margin-bottom: -.12em; }
 h1 { font-size: clamp(40px, 5.4vw, 70px); }
+
+/* ---------- Momo Trust Sans (OFL) for all text ---------- */
+:root { --sans: "Momo Trust Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; --display: "Chicoree", "Momo Trust Sans", system-ui, sans-serif; }
+body { letter-spacing: 0.005em; }
