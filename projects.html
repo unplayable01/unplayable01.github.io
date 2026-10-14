@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Harine Sumen</title>
+<meta name="description" content="Harine Sumen's projects: TTBEngine, PinPoint, Aaron the Guard Dog, S&H and Egg the Balloon.">
+<meta property="og:title" content="Harine Sumen — Developer">
+<meta property="og:description" content="Engine architecture enthusiast. Part-time sanity tester.">
+<meta property="og:image" content="chess-1.jpg">
+<meta name="theme-color" content="#F2F0EB">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23421D24'/%3E%3Cpath d='M11 9v14M21 9v14M11 16h10' stroke='%23D4C7FF' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@200..800&display=swap">
+<link rel="preload" href="chicoree-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css?v=20261014c">
+</head>
+<body>
+
+<a class="skip" href="#top">Skip to content</a>
+<div class="progress" aria-hidden="true"><i></i></div>
+
+<header class="nav" data-nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html" aria-label="Harine — home"><span class="logo-mark" aria-hidden="true">H</span>Harine</a>
+    <nav aria-label="Pages">
+      <a href="projects.html" aria-current="page">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="activities.html">Activities</a>
+      <a class="btn-lilac sm" href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+      <a class="btn-wine sm magnetic" href="https://github.com/unplayable01" target="_blank" rel="noopener">GitHub <span class="arr" aria-hidden="true">→</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="page-hero wrap">
+  <p class="kicker reveal">Projects</p>
+  <h1 class="split">Things I've built, and the parts that were mine.</h1>
+  <p class="page-sub reveal">Engines, backend plumbing, computer vision and games. Pick a tab to dig into each one.</p>
+</section>
+<!-- ============ WORK (suite tabs) ============ -->
+<section id="work" class="wrap section-tight">
+  <div class="sec-head">
+    <h2 class="split">The suite</h2>
+    <a class="btn-outline" href="https://github.com/unplayable01" target="_blank" rel="noopener">All repos on GitHub</a>
+  </div>
+
+  <div class="tabs reveal" role="tablist" aria-label="Projects" data-tabs>
+    <span class="tab-pill" aria-hidden="true"></span>
+    <button role="tab" id="t-ttb" aria-controls="p-ttb" aria-selected="true"><span class="t-ic c1">⚙</span>TTBEngine</button>
+    <button role="tab" id="t-pp" aria-controls="p-pp" aria-selected="false" tabindex="-1"><span class="t-ic c2">◎</span>PinPoint</button>
+    <button role="tab" id="t-aaron" aria-controls="p-aaron" aria-selected="false" tabindex="-1"><span class="t-ic c3">🐕</span>Aaron</button>
+    <button role="tab" id="t-sh" aria-controls="p-sh" aria-selected="false" tabindex="-1"><span class="t-ic c4">⛏</span>S&amp;H</button>
+    <button role="tab" id="t-egg" aria-controls="p-egg" aria-selected="false" tabindex="-1"><span class="t-ic c5">🎈</span>Egg the Balloon</button>
+  </div>
+
+  <div class="panels">
+    <!-- TTBEngine -->
+    <article class="panel" role="tabpanel" id="p-ttb" aria-labelledby="t-ttb">
+      <div class="panel-media">
+        <video src="ttb-trailer.mp4" poster="ttb-trailer.jpg" controls playsinline preload="metadata" aria-label="Tilt Tilt Boom gameplay trailer"></video>
+      </div>
+      <div class="panel-body">
+        <p class="meta"><span class="tag">Technical Lead</span>2025–26 · Team project · GAM200</p>
+        <h3>TTBEngine &amp; Tilt Tilt Boom</h3>
+        <p class="summary">A 2D physics engine built from scratch in C++ on an entity–component–system core, with an ImGui editor, Lua scripting and its own installer, plus the game that ships on it. As technical lead I owned the engine and debugging tools, and ended up the top committer.</p>
+        <ul class="list">
+          <li><b>Deterministic replay system</b> with binary serialization: records whole level runs, including resets, timer and physics state, and feeds a per-level best-time leaderboard.</li>
+          <li><b>Lua scripting</b>: attach and create scripts from the editor with hot-reload, wired into the game-state manager.</li>
+          <li><b>Controller system</b>: Bluetooth gamepads, two-axis gyro aiming with recalibration, haptic rumble, controller navigation across every menu.</li>
+          <li><b>Pooled memory manager</b> with a live comparison against normal allocation, plus fixing leaks in the debug editor.</li>
+          <li><b>Editor tooling</b>: rendering layers, visual prefab editor, universal undo, docked script viewer, audio manager UI with cross-state fades.</li>
+          <li><b>Original soundtrack</b>: all the music for the main menu and every level. <a class="vlink" href="activities.html#soundtrack">Listen</a></li>
+          <li><b>Build &amp; ship</b>: separate CMake targets for engine / editor / game, a build-size analyzer, and an Inno Setup installer.</li>
+        </ul>
+        <div class="chips"><span>C++</span><span>OpenGL</span><span>ECS</span><span>ImGui</span><span>Lua</span><span>FMOD</span><span>CMake</span></div>
+        <p class="note">Private school repository</p>
+      </div>
+    </article>
+
+    <!-- PinPoint -->
+    <article class="panel" role="tabpanel" id="p-pp" aria-labelledby="t-pp" hidden>
+      <div class="panel-media light">
+        <a href="pinpoint-architecture.jpg" target="_blank" rel="noopener" title="Open full-size diagram"><img src="pinpoint-architecture.jpg" alt="PinPoint system architecture: Android app, Go API server, website and Jenkins CI/CD on the team VM" loading="lazy"></a>
+      </div>
+      <div class="panel-body">
+        <p class="meta"><span class="tag">Backend &amp; Infra owner</span>2026 · Team project · Android</p>
+        <h3>PinPoint <span class="soft">(BowlEye)</span></h3>
+        <p class="summary">An Android app that coaches bowlers on their approach and delivery. It tracks body landmarks on-device with MediaPipe and gives step-count, joint-angle and phase feedback, spoken aloud while you bowl. I owned everything behind the app.</p>
+        <ul class="list">
+          <li><b>API server in Go + SQLite</b>: invite-only accounts, scrypt-hashed passwords, login tokens, private video uploads with size limits, rate limiting, admin accounts. Covered by 11 test files.</li>
+          <li><b>Jenkins CI/CD</b>: every push builds debug and signed release APKs, runs unit tests, then deploys with <code>go vet</code>/<code>go test</code> gates and automatic rollback.</li>
+          <li><b>Team VM &amp; security</b>: Ubuntu on OVH, Let's Encrypt HTTPS, private Jenkins/Gitea over Tailscale, fail2ban, nightly integrity-checked backups.</li>
+          <li><b>Source control plumbing</b>: GitHub → Gitea mirror (Git LFS first) every 5 minutes, connected to Jira.</li>
+          <li><b>In-app account screen</b> and the <b>project website</b> (My videos, My account, Admin).</li>
+        </ul>
+        <div class="chips"><span>Go</span><span>SQLite</span><span>Kotlin</span><span>Jenkins</span><span>Linux</span><span>MediaPipe</span><span>CameraX</span></div>
+        <p class="note">185 commits · 66 of them mine (top committer)</p>
+      </div>
+    </article>
+
+    <!-- Aaron -->
+    <article class="panel" role="tabpanel" id="p-aaron" aria-labelledby="t-aaron" hidden>
+      <div class="panel-media lagoon">
+        <div class="diagram" role="img" aria-label="Aaron architecture: Telegram bot talks to an always-on listener, which starts and stops a headless webcam guard; a voice-wake process can also start the guard.">
+          <div class="node hi"><span>Telegram Bot API</span></div>
+          <div class="wire"></div>
+          <div class="node"><span>aaron_listener.py</span><small>always-on · relays commands</small></div>
+          <div class="split2">
+            <div class="col"><div class="wire"></div><div class="node"><span>guard_watch.py</span><small>webcam · YuNet + SFace · locks PC</small></div></div>
+            <div class="col"><div class="wire"></div><div class="node"><span>voice_wake.py</span><small>Vosk + Resemblyzer · offline</small></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <p class="meta"><span class="tag">Solo</span>2026 · Python · Windows</p>
+        <h3>Aaron the Guard Dog</h3>
+        <p class="summary">A webcam guard dog for Windows. Aaron recognises my face, locks the PC when a stranger sits down, and reports to me on Telegram. Wake him by voice, put him to sleep with a hand gesture, check on him from my phone.</p>
+        <ul class="list">
+          <li><b>Three cooperating processes</b>: an always-on Telegram listener, a headless guard that owns the camera, and an offline voice-wake process.</li>
+          <li><b>Graded response</b>: strangers lock the PC instantly; partial matches trigger a 10-second “do you know them?” prompt.</li>
+          <li><b>Speaker-verified wake word</b>: “Wake up Aaron” only works in my voice.</li>
+          <li><b>Gestures</b> via MediaPipe: open palm to sleep, custom gestures mapped to actions.</li>
+          <li><b>Evidence archive</b>: timestamped stranger and unlock photos saved by day, even if Telegram is down.</li>
+        </ul>
+        <div class="chips"><span>Python</span><span>OpenCV</span><span>MediaPipe</span><span>Vosk</span><span>Telegram Bot API</span></div>
+        <p class="note"><a class="vlink" href="https://github.com/unplayable01/aaron-the-guard-dog" target="_blank" rel="noopener">View repository</a></p>
+      </div>
+    </article>
+
+    <!-- S&H -->
+    <article class="panel" role="tabpanel" id="p-sh" aria-labelledby="t-sh" hidden>
+      <div class="panel-media">
+        <img src="sh-gameplay.jpg" alt="S&amp;H gameplay: player and NPCs outside the house, with health, hunger and hydration bars and an item hotbar" loading="lazy">
+      </div>
+      <div class="panel-body">
+        <p class="meta"><span class="tag">Gameplay &amp; Art</span>2026 · Team of 3 · Godot</p>
+        <h3>S&amp;H</h3>
+        <p class="summary">A 2D mining and life game in Godot, in progress. I wrote most of the world systems and drew the art myself in Aseprite: the sky, meadow, cave, house, characters and NPCs.</p>
+        <ul class="list">
+          <li><b>Chunk-based procedural map</b> with ores, stone, trees and rocks, and a world that remembers which tiles were broken.</li>
+          <li><b>Parallax backgrounds</b>: auto-scrolling clouds, cave backdrop and back-blocks revealed as you dig.</li>
+          <li><b>Camera</b> with smooth lerped follow, plus a static top-down camera for the house interior.</li>
+          <li><b>Lighting</b>, character animation states, and interactable NPC dialogue.</li>
+        </ul>
+        <div class="chips"><span>Godot 4</span><span>C#</span><span>GDScript</span><span>Aseprite</span></div>
+        <p class="note">70 commits · 51 of them mine</p>
+      </div>
+    </article>
+
+    <!-- Egg -->
+    <article class="panel" role="tabpanel" id="p-egg" aria-labelledby="t-egg" hidden>
+      <div class="panel-media">
+        <video src="egg-trailer.mp4" poster="egg-level.jpg" muted loop playsinline controls preload="none" aria-label="10-second trailer of Egg the Balloon"></video>
+      </div>
+      <div class="panel-body">
+        <p class="meta"><span class="tag">Team Float</span>2025 · C++ · Alpha Engine</p>
+        <h3>Egg the Balloon</h3>
+        <p class="summary">A vertical platformer where you float a balloon past buildings, birds and planes. I built the data-driven pipeline: a JSON reader so every level, enemy and menu loads from files, plus the leaderboard level, and merged the team's work. Shipped with zero memory leaks.</p>
+        <div class="chips"><span>C++</span><span>JSON</span><span>Alpha Engine</span></div>
+        <p class="note">407 commits · 175 of them mine (top committer)</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ STACK ============ -->
+<section id="stack" class="wrap section">
+  <div class="sec-head"><h2 class="split">Skills &amp; stack</h2></div>
+  <div class="skill-cloud reveal">
+    <span>C</span><span>C++</span><span>Go</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>Java</span><span>Kotlin</span><span>C#</span><span>Lua</span><span>Linux</span><span>Bash</span>
+  </div>
+  <div class="stack">
+    <div class="s-card tilt reveal"><span class="s-ic c1">⚙</span><h3>Engines &amp; graphics</h3><p>C++, OpenGL, ECS architecture, ImGui, Godot, Lua, FMOD, CMake</p></div>
+    <div class="s-card tilt reveal"><span class="s-ic c2">⇅</span><h3>Backend &amp; infra</h3><p>Go, SQLite, Jenkins, Linux servers, Nginx, Git LFS, Gitea, Tailscale</p></div>
+    <div class="s-card tilt reveal"><span class="s-ic c3">◉</span><h3>Mobile &amp; vision</h3><p>Kotlin, CameraX, MediaPipe, OpenCV, JNI / native C++ on Android</p></div>
+    <div class="s-card tilt reveal"><span class="s-ic c4">✎</span><h3>Tools &amp; craft</h3><p>Python automation, Aseprite pixel art, Jira, Doxygen, Inno Setup</p></div>
+  </div>
+</section>
+
+
+<!-- ============ CONTACT (glow band) ============ -->
+<section id="contact" class="wrap section">
+  <div class="glow-band reveal">
+    <span class="glow gv" aria-hidden="true"></span><span class="glow gp" aria-hidden="true"></span><span class="glow gc" aria-hidden="true"></span>
+    <div class="glow-inner">
+      <h2 class="split">Let's make something go boom.</h2>
+      <p>Happy to talk about engines, tools, backend plumbing, or why your enemy AI feels unfair. Open to internships &amp; collaborations.</p>
+    </div>
+    <div class="glow-cta">
+      <a class="btn-white magnetic" href="mailto:harinesumen@gmail.com">Email me <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn-outline" href="https://www.linkedin.com/in/harinesumen/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap foot-grid">
+    <div>
+      <a class="logo light" href="index.html"><span class="logo-mark" aria-hidden="true">H</span>Harine Sumen</a>
+      <p>Engine architecture enthusiast. Part-time sanity tester. Singapore.</p>
+    </div>
+    <div><h4>Work</h4><a href="projects.html">Projects</a><a href="activities.html#soundtrack">Soundtrack</a><a href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></div>
+    <div><h4>Elsewhere</h4><a href="https://github.com/unplayable01" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/harinesumen/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:harinesumen@gmail.com">harinesumen@gmail.com</a></div>
+  </div>
+  <div class="wrap foot-bottom"><span>© 2026 Harine Sumen</span><span>Hosted on GitHub Pages</span></div>
+</footer>
+
+<!-- Mini player pill -->
+<div class="mini" data-mini hidden>
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="mini-txt"><b data-mini-name>Main Menu</b><span>Tilt Tilt Boom</span></span>
+  <button type="button" class="mini-btn" data-mini-toggle aria-label="Pause">❚❚</button>
+</div>
+
+<script src="script.js?v=20261014c"></script>
+</body>
+</html>

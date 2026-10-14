@@ -15,21 +15,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Momo+Trust+Sans:wght@200..800&display=swap">
 <link rel="preload" href="chicoree-bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="style.css?v=20261014b">
+<link rel="stylesheet" href="style.css?v=20261014c">
 </head>
 <body>
 
-<a class="skip" href="#work">Skip to projects</a>
+<a class="skip" href="#top">Skip to content</a>
 <div class="progress" aria-hidden="true"><i></i></div>
 
 <header class="nav" data-nav>
   <div class="nav-inner">
-    <a class="logo" href="#top" aria-label="Harine — home"><span class="logo-mark" aria-hidden="true">H</span>Harine</a>
-    <nav aria-label="Sections">
-      <a href="#work">Work</a>
-      <a href="#experience">Experience</a>
-      <a href="#offline">Off the keyboard</a>
-      <a href="#stack">Stack</a>
+    <a class="logo" href="index.html" aria-label="Harine — home"><span class="logo-mark" aria-hidden="true">H</span>Harine</a>
+    <nav aria-label="Pages">
+      <a href="projects.html">Projects</a>
+      <a href="experience.html">Experience</a>
+      <a href="activities.html">Activities</a>
       <a class="btn-lilac sm" href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume</a>
       <a class="btn-wine sm magnetic" href="https://github.com/unplayable01" target="_blank" rel="noopener">GitHub <span class="arr" aria-hidden="true">→</span></a>
     </nav>
@@ -44,10 +43,10 @@
     <p class="kicker reveal">CS · Real-Time Interactive Simulation · DigiPen × SIT · Singapore</p>
     <h1 class="split">Hey, I'm Harine. I build engines, tools &amp; games.</h1>
     <div class="hero-side reveal">
-      <p>Engine architecture enthusiast, part-time sanity tester, <a class="vlink" href="#offline">professional beginner at everything</a>. Tech lead on a C++ ECS engine, server and CI/CD owner on an Android vision app, and the person who taught his PC to recognise strangers.</p>
+      <p>Engine architecture enthusiast, part-time sanity tester, <a class="vlink" href="activities.html">professional beginner at everything</a>. Tech lead on a C++ ECS engine, server and CI/CD owner on an Android vision app, and the person who taught his PC to recognise strangers.</p>
       <div class="cta-row">
         <button class="btn-wine magnetic" type="button" data-play-ttb><span class="play-ico" aria-hidden="true"></span>Play Tilt Tilt Boom</button>
-        <a class="btn-lilac" href="#work">View projects</a>
+        <a class="btn-lilac" href="projects.html">View projects</a>
       </div>
     </div>
   </div>
@@ -94,246 +93,25 @@
   <div class="stat tilt reveal"><b data-count="50" data-suffix="+">0</b><span>students per calculus crash course I ran as a TA</span></div>
 </section>
 
-<!-- ============ WORK (suite tabs) ============ -->
-<section id="work" class="wrap section">
-  <div class="sec-head">
-    <h2 class="split">Your Harine suite</h2>
-    <a class="btn-outline" href="https://github.com/unplayable01" target="_blank" rel="noopener">All repos on GitHub</a>
-  </div>
-
-  <div class="tabs reveal" role="tablist" aria-label="Projects" data-tabs>
-    <span class="tab-pill" aria-hidden="true"></span>
-    <button role="tab" id="t-ttb" aria-controls="p-ttb" aria-selected="true"><span class="t-ic c1">⚙</span>TTBEngine</button>
-    <button role="tab" id="t-pp" aria-controls="p-pp" aria-selected="false" tabindex="-1"><span class="t-ic c2">◎</span>PinPoint</button>
-    <button role="tab" id="t-aaron" aria-controls="p-aaron" aria-selected="false" tabindex="-1"><span class="t-ic c3">🐕</span>Aaron</button>
-    <button role="tab" id="t-sh" aria-controls="p-sh" aria-selected="false" tabindex="-1"><span class="t-ic c4">⛏</span>S&amp;H</button>
-    <button role="tab" id="t-egg" aria-controls="p-egg" aria-selected="false" tabindex="-1"><span class="t-ic c5">🎈</span>Egg the Balloon</button>
-  </div>
-
-  <div class="panels">
-    <!-- TTBEngine -->
-    <article class="panel" role="tabpanel" id="p-ttb" aria-labelledby="t-ttb">
-      <div class="panel-media">
-        <video src="ttb-trailer.mp4" poster="ttb-trailer.jpg" controls playsinline preload="metadata" aria-label="Tilt Tilt Boom gameplay trailer"></video>
-      </div>
-      <div class="panel-body">
-        <p class="meta"><span class="tag">Technical Lead</span>2025–26 · Team project · GAM200</p>
-        <h3>TTBEngine &amp; Tilt Tilt Boom</h3>
-        <p class="summary">A 2D physics engine built from scratch in C++ on an entity–component–system core, with an ImGui editor, Lua scripting and its own installer, plus the game that ships on it. As technical lead I owned the engine and debugging tools, and ended up the top committer.</p>
-        <ul class="list">
-          <li><b>Deterministic replay system</b> with binary serialization: records whole level runs, including resets, timer and physics state, and feeds a per-level best-time leaderboard.</li>
-          <li><b>Lua scripting</b>: attach and create scripts from the editor with hot-reload, wired into the game-state manager.</li>
-          <li><b>Controller system</b>: Bluetooth gamepads, two-axis gyro aiming with recalibration, haptic rumble, controller navigation across every menu.</li>
-          <li><b>Pooled memory manager</b> with a live comparison against normal allocation, plus fixing leaks in the debug editor.</li>
-          <li><b>Editor tooling</b>: rendering layers, visual prefab editor, universal undo, docked script viewer, audio manager UI with cross-state fades.</li>
-          <li><b>Original soundtrack</b>: all the music for the main menu and every level. <a class="vlink" href="#soundtrack">Listen</a></li>
-          <li><b>Build &amp; ship</b>: separate CMake targets for engine / editor / game, a build-size analyzer, and an Inno Setup installer.</li>
-        </ul>
-        <div class="chips"><span>C++</span><span>OpenGL</span><span>ECS</span><span>ImGui</span><span>Lua</span><span>FMOD</span><span>CMake</span></div>
-        <p class="note">Private school repository</p>
-      </div>
-    </article>
-
-    <!-- PinPoint -->
-    <article class="panel" role="tabpanel" id="p-pp" aria-labelledby="t-pp" hidden>
-      <div class="panel-media light">
-        <a href="pinpoint-architecture.jpg" target="_blank" rel="noopener" title="Open full-size diagram"><img src="pinpoint-architecture.jpg" alt="PinPoint system architecture: Android app, Go API server, website and Jenkins CI/CD on the team VM" loading="lazy"></a>
-      </div>
-      <div class="panel-body">
-        <p class="meta"><span class="tag">Backend &amp; Infra owner</span>2026 · Team project · Android</p>
-        <h3>PinPoint <span class="soft">(BowlEye)</span></h3>
-        <p class="summary">An Android app that coaches bowlers on their approach and delivery. It tracks body landmarks on-device with MediaPipe and gives step-count, joint-angle and phase feedback, spoken aloud while you bowl. I owned everything behind the app.</p>
-        <ul class="list">
-          <li><b>API server in Go + SQLite</b>: invite-only accounts, scrypt-hashed passwords, login tokens, private video uploads with size limits, rate limiting, admin accounts. Covered by 11 test files.</li>
-          <li><b>Jenkins CI/CD</b>: every push builds debug and signed release APKs, runs unit tests, then deploys with <code>go vet</code>/<code>go test</code> gates and automatic rollback.</li>
-          <li><b>Team VM &amp; security</b>: Ubuntu on OVH, Let's Encrypt HTTPS, private Jenkins/Gitea over Tailscale, fail2ban, nightly integrity-checked backups.</li>
-          <li><b>Source control plumbing</b>: GitHub → Gitea mirror (Git LFS first) every 5 minutes, connected to Jira.</li>
-          <li><b>In-app account screen</b> and the <b>project website</b> (My videos, My account, Admin).</li>
-        </ul>
-        <div class="chips"><span>Go</span><span>SQLite</span><span>Kotlin</span><span>Jenkins</span><span>Linux</span><span>MediaPipe</span><span>CameraX</span></div>
-        <p class="note">185 commits · 66 of them mine (top committer)</p>
-      </div>
-    </article>
-
-    <!-- Aaron -->
-    <article class="panel" role="tabpanel" id="p-aaron" aria-labelledby="t-aaron" hidden>
-      <div class="panel-media lagoon">
-        <div class="diagram" role="img" aria-label="Aaron architecture: Telegram bot talks to an always-on listener, which starts and stops a headless webcam guard; a voice-wake process can also start the guard.">
-          <div class="node hi"><span>Telegram Bot API</span></div>
-          <div class="wire"></div>
-          <div class="node"><span>aaron_listener.py</span><small>always-on · relays commands</small></div>
-          <div class="split2">
-            <div class="col"><div class="wire"></div><div class="node"><span>guard_watch.py</span><small>webcam · YuNet + SFace · locks PC</small></div></div>
-            <div class="col"><div class="wire"></div><div class="node"><span>voice_wake.py</span><small>Vosk + Resemblyzer · offline</small></div></div>
-          </div>
-        </div>
-      </div>
-      <div class="panel-body">
-        <p class="meta"><span class="tag">Solo</span>2026 · Python · Windows</p>
-        <h3>Aaron the Guard Dog</h3>
-        <p class="summary">A webcam guard dog for Windows. Aaron recognises my face, locks the PC when a stranger sits down, and reports to me on Telegram. Wake him by voice, put him to sleep with a hand gesture, check on him from my phone.</p>
-        <ul class="list">
-          <li><b>Three cooperating processes</b>: an always-on Telegram listener, a headless guard that owns the camera, and an offline voice-wake process.</li>
-          <li><b>Graded response</b>: strangers lock the PC instantly; partial matches trigger a 10-second “do you know them?” prompt.</li>
-          <li><b>Speaker-verified wake word</b>: “Wake up Aaron” only works in my voice.</li>
-          <li><b>Gestures</b> via MediaPipe: open palm to sleep, custom gestures mapped to actions.</li>
-          <li><b>Evidence archive</b>: timestamped stranger and unlock photos saved by day, even if Telegram is down.</li>
-        </ul>
-        <div class="chips"><span>Python</span><span>OpenCV</span><span>MediaPipe</span><span>Vosk</span><span>Telegram Bot API</span></div>
-        <p class="note"><a class="vlink" href="https://github.com/unplayable01/aaron-the-guard-dog" target="_blank" rel="noopener">View repository</a></p>
-      </div>
-    </article>
-
-    <!-- S&H -->
-    <article class="panel" role="tabpanel" id="p-sh" aria-labelledby="t-sh" hidden>
-      <div class="panel-media">
-        <img src="sh-gameplay.jpg" alt="S&amp;H gameplay: player and NPCs outside the house, with health, hunger and hydration bars and an item hotbar" loading="lazy">
-      </div>
-      <div class="panel-body">
-        <p class="meta"><span class="tag">Gameplay &amp; Art</span>2026 · Team of 3 · Godot</p>
-        <h3>S&amp;H</h3>
-        <p class="summary">A 2D mining and life game in Godot, in progress. I wrote most of the world systems and drew the art myself in Aseprite: the sky, meadow, cave, house, characters and NPCs.</p>
-        <ul class="list">
-          <li><b>Chunk-based procedural map</b> with ores, stone, trees and rocks, and a world that remembers which tiles were broken.</li>
-          <li><b>Parallax backgrounds</b>: auto-scrolling clouds, cave backdrop and back-blocks revealed as you dig.</li>
-          <li><b>Camera</b> with smooth lerped follow, plus a static top-down camera for the house interior.</li>
-          <li><b>Lighting</b>, character animation states, and interactable NPC dialogue.</li>
-        </ul>
-        <div class="chips"><span>Godot 4</span><span>C#</span><span>GDScript</span><span>Aseprite</span></div>
-        <p class="note">70 commits · 51 of them mine</p>
-      </div>
-    </article>
-
-    <!-- Egg -->
-    <article class="panel" role="tabpanel" id="p-egg" aria-labelledby="t-egg" hidden>
-      <div class="panel-media">
-        <video src="egg-trailer.mp4" poster="egg-level.jpg" muted loop playsinline controls preload="none" aria-label="10-second trailer of Egg the Balloon"></video>
-      </div>
-      <div class="panel-body">
-        <p class="meta"><span class="tag">Team Float</span>2025 · C++ · Alpha Engine</p>
-        <h3>Egg the Balloon</h3>
-        <p class="summary">A vertical platformer where you float a balloon past buildings, birds and planes. I built the data-driven pipeline: a JSON reader so every level, enemy and menu loads from files, plus the leaderboard level, and merged the team's work. Shipped with zero memory leaks.</p>
-        <div class="chips"><span>C++</span><span>JSON</span><span>Alpha Engine</span></div>
-        <p class="note">407 commits · 175 of them mine (top committer)</p>
-      </div>
-    </article>
+<!-- ============ EXPLORE ============ -->
+<section class="wrap section">
+  <div class="sec-head"><h2 class="split">Pick a door</h2></div>
+  <div class="doors">
+    <a class="door tilt reveal" href="projects.html">
+      <div class="door-media"><img src="ttb-title.jpg" alt="" loading="lazy"></div>
+      <div class="door-body"><p class="meta"><span class="tag">5 projects</span>Engines · backend · vision · games</p><h3>Projects</h3><p>TTBEngine, PinPoint, Aaron the Guard Dog, S&amp;H and Egg the Balloon, plus my skills and stack.</p><span class="door-go">Open projects <span class="arr" aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="door tilt reveal" href="experience.html">
+      <div class="door-media"><img src="ttb-editor.jpg" alt="" loading="lazy"></div>
+      <div class="door-body"><p class="meta"><span class="tag">2 roles · 2 schools</span>DigiPen · Denso Wave · SIT · NP</p><h3>Experience</h3><p>Teaching calculus as a TA, my software internship at Denso Wave, and where I've studied.</p><span class="door-go">Open experience <span class="arr" aria-hidden="true">→</span></span></div>
+    </a>
+    <a class="door tilt reveal" href="activities.html">
+      <div class="door-media"><img src="chess-medals.jpg" alt="" loading="lazy" style="object-position:center 30%"></div>
+      <div class="door-body"><p class="meta"><span class="tag">Off the keyboard</span>Chess · orientation · music</p><h3>Activities</h3><p>SIT Mindsports, FYE Helix orientation and the Tilt Tilt Boom soundtrack you can play.</p><span class="door-go">Open activities <span class="arr" aria-hidden="true">→</span></span></div>
+    </a>
   </div>
 </section>
 
-<!-- ============ EXPERIENCE ============ -->
-<section id="experience" class="wrap section">
-  <div class="sec-head"><h2 class="split">Where I've worked &amp; studied</h2></div>
-  <div class="timeline">
-    <article class="t-card tilt reveal">
-      <p class="meta"><span class="tag">Jan – Apr 2026</span>Hybrid</p>
-      <h3>Teaching Assistant</h3>
-      <p class="org">DigiPen Institute of Technology Singapore</p>
-      <p>Ran calculus crash courses for 50+ juniors per session, breaking abstract university maths into step-by-step explanations, and gave 1-on-1 consultations until each concept clicked.</p>
-    </article>
-    <article class="t-card tilt reveal">
-      <p class="meta"><span class="tag">Oct 2021 – Feb 2022</span>Internship</p>
-      <h3>Software Engineer Intern</h3>
-      <p class="org">Denso Wave Incorporated</p>
-      <p>Built and maintained VBA-based inventory management systems, wrote Python automation scripts that cut manual microcontroller testing, and debugged, tested and documented processes with cross-functional engineers.</p>
-    </article>
-    <article class="t-card tilt reveal">
-      <p class="meta"><span class="tag">Sep 2024 – Present</span>Graduating Aug 2028</p>
-      <h3>BSc (Hons) Computer Science in Real-Time Interactive Simulation</h3>
-      <p class="org">Singapore Institute of Technology × DigiPen Singapore</p>
-    </article>
-    <article class="t-card tilt reveal">
-      <p class="meta"><span class="tag">Apr 2019 – May 2022</span></p>
-      <h3>Diploma in Electronic &amp; Computer Engineering</h3>
-      <p class="org">Ngee Ann Polytechnic</p>
-    </article>
-  </div>
-</section>
-
-<!-- ============ OFF THE KEYBOARD (lagoon band) ============ -->
-<section id="offline" class="lagoon-band">
-  <svg class="geo" viewBox="0 0 600 600" aria-hidden="true">
-    <circle class="spin" cx="300" cy="300" r="220" fill="none" stroke="#D4C7FF" stroke-opacity=".25" stroke-width="2" stroke-dasharray="6 14"/>
-    <rect class="spin-rev" x="190" y="190" width="220" height="220" fill="none" stroke="#F2F0EB" stroke-opacity=".18" stroke-width="2"/>
-    <circle class="bob" cx="470" cy="150" r="26" fill="#D4C7FF" fill-opacity=".35"/>
-    <circle class="bob d2" cx="120" cy="460" r="16" fill="#F2F0EB" fill-opacity=".25"/>
-  </svg>
-  <div class="wrap section-in">
-    <div class="sec-head on-dark"><h2 class="split">Off the keyboard</h2><p class="sub">Chess boards, freshmen and soundtracks.</p></div>
-    <div class="life">
-      <article class="life-card tilt reveal">
-        <div class="gallery" data-gallery aria-roledescription="carousel" aria-label="SIT Mindsports chess photos">
-          <div class="gallery-track" tabindex="0">
-            <img src="chess-medals.jpg" alt="Harine and the SIT team with medals and the 3rd Runner-Up trophy from the Singapore Intervarsity Chess League" style="object-position:center 30%">
-            <img src="chess-1.jpg" alt="Harine at a chess tournament" loading="lazy" style="object-position:center 40%">
-            <img src="chess-4.jpg" alt="Harine studying the board in a club game" loading="lazy" style="object-position:center 30%">
-            <img src="chess-2.jpg" alt="Harine deep in thought over a chess position" loading="lazy" style="object-position:center 45%">
-            <img src="chess-3.jpg" alt="Harine leaning over the board at a tournament" loading="lazy" style="object-position:center 40%">
-            <img src="chess-team.jpg" alt="SIT team lined up at Table 6 before a league match" loading="lazy">
-            <img src="chess-league.jpg" alt="SIT players together at an intervarsity league venue" loading="lazy" style="object-position:center 35%">
-          </div>
-          <button class="g-btn g-prev" type="button" aria-label="Previous photo">&#8249;</button>
-          <button class="g-btn g-next" type="button" aria-label="Next photo">&#8250;</button>
-          <span class="g-count" aria-live="polite">1 / 7</span>
-        </div>
-        <div class="life-body">
-          <p class="meta"><span class="tag">President &amp; Quartermaster</span>2025</p>
-          <h3>SIT Mindsports</h3>
-          <p>Led the club and ran its equipment and logistics while competing in 10 chess competitions. Our team placed <b>3rd Runner-Up</b> in Singapore's Intervarsity League, against every university, polytechnic and JC.</p>
-        </div>
-      </article>
-      <article class="life-card tilt reveal">
-        <div class="gallery" data-gallery aria-roledescription="carousel" aria-label="FYE Helix orientation photos">
-          <div class="gallery-track" tabindex="0">
-            <img src="helix-shield.jpg" alt="The Helix team in matching jerseys with their shield on the hall floor" style="object-position:center 55%">
-            <img src="helix-group.jpg" alt="Helix facilitators and freshmen posing together on campus" loading="lazy" style="object-position:center 60%">
-            <img src="helix-selfie.jpg" alt="Group selfie with Helix facilitators after an orientation session" loading="lazy" style="object-position:center 45%">
-            <img src="helix-hall.jpg" alt="Helix facilitators and freshmen posing together in the hall" loading="lazy" style="object-position:center 40%">
-            <img src="helix-steps.jpg" alt="Selfie with Helix facilitators on the steps" loading="lazy" style="object-position:center 35%">
-          </div>
-          <button class="g-btn g-prev" type="button" aria-label="Previous photo">&#8249;</button>
-          <button class="g-btn g-next" type="button" aria-label="Next photo">&#8250;</button>
-          <span class="g-count" aria-live="polite">1 / 5</span>
-        </div>
-        <div class="life-body">
-          <p class="meta"><span class="tag">Assistant Head Facilitator</span>2025–26</p>
-          <h3>FYE Helix orientation</h3>
-          <p>Co-led the facilitators running SIT's First Year Experience activities, helping freshmen settle into university life.</p>
-        </div>
-      </article>
-      <article class="life-card tilt reveal" id="soundtrack">
-        <div class="cover">
-          <img src="ttb-cover.jpg" alt="Tilt Tilt Boom title screen" loading="lazy">
-          <span class="eq big" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        </div>
-        <div class="life-body">
-          <p class="meta"><span class="tag">Composer</span>2025–26</p>
-          <h3>Tilt Tilt Boom soundtrack</h3>
-          <p>I compose and study music theory. I wrote the full Tilt Tilt Boom score, the main menu and every level. Have a listen:</p>
-          <ul class="tracks" data-player>
-            <li><button class="track" type="button" data-src="ttb-menu.mp3" aria-label="Play Main Menu"><span class="t-icon" aria-hidden="true"></span><span class="t-name">Main Menu</span><span class="t-time">0:31</span><span class="t-bar" aria-hidden="true"><i></i></span></button></li>
-            <li><button class="track" type="button" data-src="ttb-level-1.mp3" aria-label="Play Level 1"><span class="t-icon" aria-hidden="true"></span><span class="t-name">Level 1</span><span class="t-time">0:36</span><span class="t-bar" aria-hidden="true"><i></i></span></button></li>
-            <li><button class="track" type="button" data-src="ttb-level-2.mp3" aria-label="Play Level 2"><span class="t-icon" aria-hidden="true"></span><span class="t-name">Level 2</span><span class="t-time">0:34</span><span class="t-bar" aria-hidden="true"><i></i></span></button></li>
-            <li><button class="track" type="button" data-src="ttb-level-5.mp3" aria-label="Play Level 3"><span class="t-icon" aria-hidden="true"></span><span class="t-name">Level 3</span><span class="t-time">0:30</span><span class="t-bar" aria-hidden="true"><i></i></span></button></li>
-          </ul>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STACK ============ -->
-<section id="stack" class="wrap section">
-  <div class="sec-head"><h2 class="split">Skills &amp; stack</h2></div>
-  <div class="skill-cloud reveal">
-    <span>C</span><span>C++</span><span>Go</span><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>Java</span><span>Kotlin</span><span>C#</span><span>Lua</span><span>Linux</span><span>Bash</span>
-  </div>
-  <div class="stack">
-    <div class="s-card tilt reveal"><span class="s-ic c1">⚙</span><h3>Engines &amp; graphics</h3><p>C++, OpenGL, ECS architecture, ImGui, Godot, Lua, FMOD, CMake</p></div>
-    <div class="s-card tilt reveal"><span class="s-ic c2">⇅</span><h3>Backend &amp; infra</h3><p>Go, SQLite, Jenkins, Linux servers, Nginx, Git LFS, Gitea, Tailscale</p></div>
-    <div class="s-card tilt reveal"><span class="s-ic c3">◉</span><h3>Mobile &amp; vision</h3><p>Kotlin, CameraX, MediaPipe, OpenCV, JNI / native C++ on Android</p></div>
-    <div class="s-card tilt reveal"><span class="s-ic c4">✎</span><h3>Tools &amp; craft</h3><p>Python automation, Aseprite pixel art, Jira, Doxygen, Inno Setup</p></div>
-  </div>
-</section>
 
 <!-- ============ CONTACT (glow band) ============ -->
 <section id="contact" class="wrap section">
@@ -355,10 +133,10 @@
 <footer class="footer">
   <div class="wrap foot-grid">
     <div>
-      <a class="logo light" href="#top"><span class="logo-mark" aria-hidden="true">H</span>Harine Sumen</a>
+      <a class="logo light" href="index.html"><span class="logo-mark" aria-hidden="true">H</span>Harine Sumen</a>
       <p>Engine architecture enthusiast. Part-time sanity tester. Singapore.</p>
     </div>
-    <div><h4>Work</h4><a href="#work">Projects</a><a href="#soundtrack">Soundtrack</a><a href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></div>
+    <div><h4>Work</h4><a href="projects.html">Projects</a><a href="activities.html#soundtrack">Soundtrack</a><a href="Harine_Sumen_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a></div>
     <div><h4>Elsewhere</h4><a href="https://github.com/unplayable01" target="_blank" rel="noopener">GitHub</a><a href="https://www.linkedin.com/in/harinesumen/" target="_blank" rel="noopener">LinkedIn</a><a href="mailto:harinesumen@gmail.com">harinesumen@gmail.com</a></div>
   </div>
   <div class="wrap foot-bottom"><span>© 2026 Harine Sumen</span><span>Hosted on GitHub Pages</span></div>
@@ -371,150 +149,6 @@
   <button type="button" class="mini-btn" data-mini-toggle aria-label="Pause">❚❚</button>
 </div>
 
-<script>
-(function () {
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var finePointer = window.matchMedia('(pointer: fine)').matches;
-
-  /* Split headings into words for a staggered rise */
-  document.querySelectorAll('.split').forEach(function (el) {
-    var words = el.textContent.trim().split(/\s+/);
-    el.setAttribute('aria-label', el.textContent.trim());
-    el.innerHTML = words.map(function (w, i) {
-      return '<span class="w" aria-hidden="true"><span style="transition-delay:' + (i * 55) + 'ms">' + w.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</span></span>';
-    }).join(' ');
-  });
-
-  /* Reveal on scroll (+ count-up) */
-  function countUp(el) {
-    var end = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null, dur = 1200;
-    if (reduce) { el.textContent = end + suf; return; }
-    function step(t) { if (!t0) t0 = t; var p = Math.min((t - t0) / dur, 1); var e = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(end * e).toLocaleString() + suf; if (p < 1) requestAnimationFrame(step); }
-    requestAnimationFrame(step);
-  }
-  var targets = document.querySelectorAll('.reveal, .split, .stat');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        var c = e.target.querySelector('[data-count]'); if (c && !c.dataset.done) { c.dataset.done = 1; countUp(c); }
-        io.unobserve(e.target);
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    targets.forEach(function (el, i) { io.observe(el); });
-  } else targets.forEach(function (el) { el.classList.add('in'); });
-  /* stagger siblings */
-  document.querySelectorAll('.stats, .timeline, .life, .stack').forEach(function (g) {
-    Array.prototype.forEach.call(g.children, function (c, i) { c.style.transitionDelay = (i * 90) + 'ms'; });
-  });
-
-  /* Nav border + progress bar */
-  var nav = document.querySelector('[data-nav]'), bar = document.querySelector('.progress i');
-  function onScroll() {
-    var y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
-    nav.classList.toggle('scrolled', y > 8);
-    bar.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
-  }
-  addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-  /* Hero stage: mouse + scroll parallax on floating glass cards */
-  var stage = document.querySelector('[data-stage]');
-  if (stage && !reduce) {
-    var layers = stage.querySelectorAll('[data-depth]'), mx = 0, my = 0, sy = 0, raf;
-    function paint() {
-      raf = null;
-      layers.forEach(function (l) { var d = +l.dataset.depth;
-        l.style.setProperty('--px', (mx * d * 400) + 'px'); l.style.setProperty('--py', (my * d * 400 - sy * d * 3) + 'px'); });
-    }
-    function queue() { if (!raf) raf = requestAnimationFrame(paint); }
-    if (finePointer) stage.addEventListener('pointermove', function (e) {
-      var r = stage.getBoundingClientRect(); mx = (e.clientX - r.left) / r.width - .5; my = (e.clientY - r.top) / r.height - .5; queue(); });
-    stage.addEventListener('pointerleave', function () { mx = my = 0; queue(); });
-    addEventListener('scroll', function () { var r = stage.getBoundingClientRect(); sy = Math.max(-200, Math.min(400, -r.top)); queue(); }, { passive: true });
-  }
-
-  /* 3D tilt cards */
-  if (finePointer && !reduce) document.querySelectorAll('.tilt').forEach(function (c) {
-    c.addEventListener('pointermove', function (e) { var r = c.getBoundingClientRect();
-      var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-      c.style.setProperty('--rx', (-y * 6) + 'deg'); c.style.setProperty('--ry', (x * 8) + 'deg');
-      c.style.setProperty('--gx', ((x + .5) * 100) + '%'); c.style.setProperty('--gy', ((y + .5) * 100) + '%'); c.classList.add('tilting'); });
-    c.addEventListener('pointerleave', function () { c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg'); c.classList.remove('tilting'); });
-  });
-
-  /* Magnetic buttons */
-  if (finePointer && !reduce) document.querySelectorAll('.magnetic').forEach(function (b) {
-    b.addEventListener('pointermove', function (e) { var r = b.getBoundingClientRect();
-      b.style.transform = 'translate(' + ((e.clientX - r.left - r.width / 2) * .25) + 'px,' + ((e.clientY - r.top - r.height / 2) * .35) + 'px)'; });
-    b.addEventListener('pointerleave', function () { b.style.transform = ''; });
-  });
-
-  /* Tabs with sliding pill */
-  var tabs = document.querySelector('[data-tabs]');
-  if (tabs) {
-    var btns = tabs.querySelectorAll('[role=tab]'), pill = tabs.querySelector('.tab-pill');
-    function movePill(b) { pill.style.width = b.offsetWidth + 'px'; pill.style.transform = 'translateX(' + b.offsetLeft + 'px)'; pill.style.height = b.offsetHeight + 'px'; pill.style.top = b.offsetTop + 'px'; }
-    function select(b, focus) {
-      btns.forEach(function (x) { var on = x === b; x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
-        var p = document.getElementById(x.getAttribute('aria-controls'));
-        if (on) { p.hidden = false; p.classList.remove('show'); void p.offsetWidth; p.classList.add('show'); }
-        else { p.hidden = true; p.querySelectorAll('video').forEach(function (v) { v.pause(); }); } });
-      movePill(b); if (focus) b.focus();
-      if (b.scrollIntoView && tabs.scrollWidth > tabs.clientWidth) b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-    }
-    btns.forEach(function (b, i) {
-      b.addEventListener('click', function () { select(b); });
-      b.addEventListener('keydown', function (e) {
-        var k = e.key, n = btns.length;
-        if (k === 'ArrowRight') select(btns[(i + 1) % n], true);
-        if (k === 'ArrowLeft') select(btns[(i - 1 + n) % n], true);
-        if (k === 'Home') select(btns[0], true); if (k === 'End') select(btns[n - 1], true);
-      });
-    });
-    requestAnimationFrame(function () { movePill(btns[0]); document.getElementById('p-ttb').classList.add('show'); });
-    addEventListener('resize', function () { movePill(tabs.querySelector('[aria-selected=true]')); });
-    if (document.fonts) document.fonts.ready.then(function () { movePill(tabs.querySelector('[aria-selected=true]')); });
-  }
-
-  /* Galleries */
-  document.querySelectorAll('[data-gallery]').forEach(function (g) {
-    var track = g.querySelector('.gallery-track'), imgs = track.children, count = g.querySelector('.g-count');
-    function idx() { return Math.round(track.scrollLeft / track.clientWidth); }
-    function go(i) { i = (i + imgs.length) % imgs.length; track.scrollTo({ left: i * track.clientWidth, behavior: reduce ? 'auto' : 'smooth' }); }
-    g.querySelector('.g-prev').addEventListener('click', function () { go(idx() - 1); });
-    g.querySelector('.g-next').addEventListener('click', function () { go(idx() + 1); });
-    track.addEventListener('keydown', function (e) { if (e.key === 'ArrowRight') { e.preventDefault(); go(idx() + 1); } if (e.key === 'ArrowLeft') { e.preventDefault(); go(idx() - 1); } });
-    var t; track.addEventListener('scroll', function () { clearTimeout(t); t = setTimeout(function () { count.textContent = (idx() + 1) + ' / ' + imgs.length; }, 60); });
-  });
-
-  /* Soundtrack player + mini pill */
-  var audio = new Audio(); audio.preload = 'none'; var active = null;
-  var mini = document.querySelector('[data-mini]'), miniName = document.querySelector('[data-mini-name]'), miniBtn = document.querySelector('[data-mini-toggle]');
-  var trackBtns = document.querySelectorAll('[data-player] .track');
-  function sync() {
-    var playing = !audio.paused && !!active;
-    document.body.classList.toggle('is-playing', playing);
-    trackBtns.forEach(function (b) { var on = b === active && playing; b.classList.toggle('is-playing', on);
-      b.setAttribute('aria-label', (on ? 'Pause ' : 'Play ') + b.querySelector('.t-name').textContent); });
-    if (active) { mini.hidden = false; requestAnimationFrame(function () { mini.classList.add('on'); }); miniName.textContent = active.querySelector('.t-name').textContent; }
-    miniBtn.textContent = playing ? '❚❚' : '▶'; miniBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
-  }
-  function play(btn) {
-    if (active === btn) { audio.paused ? audio.play() : audio.pause(); return; }
-    if (active) active.querySelector('.t-bar i').style.width = '0';
-    active = btn; audio.src = btn.dataset.src; audio.play();
-  }
-  trackBtns.forEach(function (b) { b.addEventListener('click', function () { play(b); }); });
-  ['play', 'pause', 'ended'].forEach(function (ev) { audio.addEventListener(ev, sync); });
-  audio.addEventListener('timeupdate', function () { if (active && audio.duration) active.querySelector('.t-bar i').style.width = (audio.currentTime / audio.duration * 100) + '%'; });
-  audio.addEventListener('ended', function () { var i = Array.prototype.indexOf.call(trackBtns, active); if (i > -1 && i < trackBtns.length - 1) { play(trackBtns[i + 1]); } });
-  miniBtn.addEventListener('click', function () { if (active) play(active); });
-  document.querySelectorAll('[data-play-ttb]').forEach(function (b) {
-    b.addEventListener('click', function () { play(trackBtns[0]); });
-  });
-})();
-</script>
+<script src="script.js?v=20261014c"></script>
 </body>
 </html>
