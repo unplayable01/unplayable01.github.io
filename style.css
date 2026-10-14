@@ -472,3 +472,7 @@ body { letter-spacing: 0.005em; }
   .g4 { top: auto; bottom: 12px; left: 12px; right: 12px; }
 }
 @media (max-width: 640px) { .g3 { display: none; } }
+
+/* Hero: centred subject, sharper cut-out */
+.stage .layer-person { left: 50%; bottom: -30%; height: 104%; image-rendering: auto; }
+@media (max-width: 640px) { .stage .layer-person { left: 50%; bottom: -24%; height: 98%; } }
