@@ -51,8 +51,10 @@
     var layers = stage.querySelectorAll('[data-depth]'), mx = 0, my = 0, sy = 0, raf;
     function paint() {
       raf = null;
-      layers.forEach(function (l) { var d = +l.dataset.depth;
-        l.style.setProperty('--px', (mx * d * 400) + 'px'); l.style.setProperty('--py', (my * d * 400 - sy * d * 3) + 'px'); });
+      layers.forEach(function (l) { var d = +l.dataset.depth, sc = l.dataset.scroll;
+        var py = my * d * 400 + (sc !== undefined ? sy * +sc : -sy * d * 3);
+        l.style.setProperty('--px', (mx * d * 400) + 'px'); l.style.setProperty('--py', py + 'px');
+        if (l.dataset.zoom) l.style.setProperty('--s', 1 + Math.max(0, sy) * +l.dataset.zoom); });
     }
     function queue() { if (!raf) raf = requestAnimationFrame(paint); }
     if (finePointer) stage.addEventListener('pointermove', function (e) {

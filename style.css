@@ -440,3 +440,17 @@ body { letter-spacing: 0.005em; }
 .about-cut .about-sticker { left: 16px; bottom: 22px; background: #fff; color: var(--wine); }
 @keyframes blobby { 0%, 100% { border-radius: 46% 54% 52% 48% / 55% 45% 55% 45%; transform: rotate(0); } 50% { border-radius: 58% 42% 40% 60% / 45% 58% 42% 55%; transform: rotate(8deg); } }
 @media (max-width: 640px) { .about-cut { min-height: 420px; } .about-cut img { height: 380px; } }
+
+/* ---------- Hero: layered parallax photo ---------- */
+.stage { background: #8a8f99; }
+.stage-layer { position: absolute; left: -4%; top: -6%; width: 108%; height: 112%; max-width: none; object-fit: cover; object-position: 50% 32%;
+  transform: translate3d(var(--px, 0), var(--py, 0), 0) scale(var(--s, 1)); transition: transform .8s var(--ease); will-change: transform; }
+.layer-bg { z-index: 0; }
+.stage::after { z-index: 1; background: linear-gradient(90deg, rgba(66,29,36,.42), rgba(66,29,36,.08) 45%, transparent 60%), linear-gradient(0deg, rgba(41,40,39,.28), transparent 35%); }
+.layer-person { z-index: 2; filter: drop-shadow(0 20px 30px rgba(0,0,0,.25)); }
+.stage .glass { z-index: 3; }
+.js .stage.reveal .layer-person { opacity: 0; transform: translate3d(0, 40px, 0) scale(.97); }
+.js .stage.reveal.in .layer-person { opacity: 1; transform: translate3d(var(--px, 0), var(--py, 0), 0) scale(var(--s, 1)); transition: opacity .9s .25s, transform 1.1s .25s var(--ease); }
+@media (max-width: 640px) { .stage-layer { object-position: 50% 30%; } }
+.stage-layer { left: -4%; top: -10%; width: 108%; height: 124%; }
+@media (max-width: 640px) { .g1 { display: none; } }
