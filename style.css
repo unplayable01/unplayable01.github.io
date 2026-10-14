@@ -702,3 +702,6 @@ body { letter-spacing: 0.005em; }
   .hero-full .hero-head { bottom: 84px; }
   .hero-full .g4 { display: flex; left: 12px; right: 12px; bottom: 12px; }
 }
+/* more headroom above Harine */
+.hero-full .layer-photo { object-position: 50% 0%; transform-origin: 50% 100%; }
+@media (max-width: 640px) { .hero-full .layer-photo { object-position: 50% 0%; } }
