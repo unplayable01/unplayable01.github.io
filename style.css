@@ -674,3 +674,31 @@ body { letter-spacing: 0.005em; }
 .hero-full .btn-wine { background: #fff; color: var(--wine); }
 .hero-full .btn-wine:hover { background: #F6E3E6; }
 @media (max-width: 640px) { .hero-full .layer-cut { height: auto; width: min(96%, calc((100svh - 420px) * 0.83)) !important; } }
+
+/* Hero v6: full market photo, uncropped scale (no extra zoom), subject centred, no blur */
+.hero-full .stage { background: #3A2540; }
+.hero-full .layer-photo { z-index: 0; position: absolute; left: 0 !important; top: 0; width: 100% !important; height: 100%; max-width: none;
+  object-fit: cover; object-position: 50% 35%; transform: translate3d(var(--px, 0px), var(--py, 0), 0) scale(1.03); }
+.hero-shade { background:
+  linear-gradient(180deg, rgba(20,12,22,.5) 0%, rgba(20,12,22,0) 28%),
+  linear-gradient(90deg, rgba(20,12,22,.62) 0%, rgba(20,12,22,.25) 30%, rgba(20,12,22,0) 42%),
+  linear-gradient(0deg, rgba(20,12,22,.4) 0%, rgba(20,12,22,0) 25%); }
+.hero-full .hero-head { text-align: left; padding-top: 120px; }
+.hero-full .hero-head > * { max-width: 440px; margin-left: 0; margin-right: 0; }
+.hero-full h1 { font-size: clamp(34px, 3.5vw, 52px); }
+.hero-full .hero-side { margin: 16px 0 0; }
+.hero-full .cta-row { justify-content: flex-start; }
+.hero-full .g1 { left: auto; right: 4%; top: 16%; bottom: auto; }
+.hero-full .g3 { right: 4%; left: auto; bottom: 8%; top: auto; }
+.hero-full .g4 { left: 5%; right: auto; bottom: 8%; top: auto; }
+@media (max-width: 1100px) {
+  .hero-full .hero-head { top: auto; bottom: 56px; padding-top: 0; }
+  .hero-full .hero-head > * { max-width: 560px; }
+  .hero-shade { background: linear-gradient(0deg, rgba(20,12,22,.8) 0%, rgba(20,12,22,.25) 40%, rgba(20,12,22,0) 58%), linear-gradient(180deg, rgba(20,12,22,.45) 0%, rgba(20,12,22,0) 18%); }
+  .hero-full .g1, .hero-full .g3, .hero-full .g4 { display: none; }
+}
+@media (max-width: 640px) {
+  .hero-full .layer-photo { object-position: 50% 30%; }
+  .hero-full .hero-head { bottom: 84px; }
+  .hero-full .g4 { display: flex; left: 12px; right: 12px; bottom: 12px; }
+}
