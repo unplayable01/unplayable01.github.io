@@ -352,3 +352,18 @@ body.is-playing .cover img { transform: scale(1.06); }
 }
 .panel[hidden] { display: none; }
 .stage-photo { max-width: none; }
+
+/* Projects: full landscape media on top, details below */
+.panel { grid-template-columns: 1fr; }
+.panel-media { aspect-ratio: 16 / 9; min-height: 0; justify-content: center; }
+.panel-media video, .panel-media img { width: 100%; height: 100%; object-fit: contain; background: #000; }
+.panel-media.light { border-right: 0; border-bottom: 1px solid var(--mist); aspect-ratio: auto; }
+.panel-media.light img { height: auto; background: #fff; }
+.panel-body { padding: 32px 40px 36px; }
+.panel .summary { max-width: 820px; }
+@media (min-width: 901px) {
+  .panel .list { display: block; columns: 2; column-gap: 40px; }
+  .panel .list li { break-inside: avoid; margin-bottom: 10px; }
+}
+@media (max-width: 640px) { .panel-body { padding: 22px; } }
+.mini[hidden] { display: none; }
