@@ -514,3 +514,8 @@ body { letter-spacing: 0.005em; }
   .hero-full .g4 { left: 12px; right: 12px; bottom: 12px; }
 }
 @media (min-width: 641px) and (max-height: 800px) { .hero-full .g4 { left: auto; right: 4%; bottom: auto; top: 46%; } .hero-full .g3 { bottom: 6%; } .hero-full .g1 { top: 18%; } }
+@media (min-width: 641px) and (max-width: 1100px) {
+  .hero-full .hero-side p { display: none; }
+  .hero-full .hero-side { margin-top: 6px; }
+  .hero-full .layer-person { bottom: -44%; }
+}
