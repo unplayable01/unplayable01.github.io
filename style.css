@@ -454,3 +454,12 @@ body { letter-spacing: 0.005em; }
 @media (max-width: 640px) { .stage-layer { object-position: 50% 30%; } }
 .stage-layer { left: -4%; top: -10%; width: 108%; height: 124%; }
 @media (max-width: 640px) { .g1 { display: none; } }
+
+/* Hero v2: forest background + standing cut-out */
+.layer-bg { object-position: 50% 58%; }
+.stage .layer-person { left: 50%; top: auto; bottom: -3%; width: auto; height: 96%; object-fit: contain;
+  transform: translate3d(calc(-50% + var(--px, 0px)), var(--py, 0), 0); filter: drop-shadow(0 24px 30px rgba(0,0,0,.35)); }
+.js .stage.reveal .layer-person { transform: translate3d(-50%, 40px, 0); }
+.js .stage.reveal.in .layer-person { transform: translate3d(calc(-50% + var(--px, 0px)), var(--py, 0), 0); }
+.stage::after { background: linear-gradient(90deg, rgba(41,40,39,.30), transparent 40%), linear-gradient(0deg, rgba(41,40,39,.25), transparent 35%); }
+@media (max-width: 640px) { .stage .layer-person { height: 88%; } }
