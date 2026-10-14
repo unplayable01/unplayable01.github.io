@@ -601,3 +601,13 @@ body { letter-spacing: 0.005em; }
 .nav nav > a[aria-current="page"] { color: var(--wine); }
 .nav nav > a[aria-current="page"]::after { background: var(--rose); }
 .nav.scrolled { background: rgba(244,241,244,.82); border-bottom-color: var(--mist); }
+/* Hero v4: market photo */
+.hero-full .layer-bg { object-position: 50% 22%; }
+@media (max-width: 640px) { .hero-full .layer-bg { object-position: 52% 22%; } }
+@media (min-width: 1101px) {
+  .hero-full .layer-bg { left: -2%; width: 128%; object-position: 50% 22%; }
+  .hero-full .hero-head > * { max-width: 450px; }
+  .hero-full h1 { font-size: clamp(36px, 3.6vw, 54px); }
+  .hero-full .g1 { right: 3%; top: 16%; }
+  .hero-full .g3 { right: 3%; bottom: 6%; }
+}
