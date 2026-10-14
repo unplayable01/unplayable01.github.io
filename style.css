@@ -463,3 +463,12 @@ body { letter-spacing: 0.005em; }
 .js .stage.reveal.in .layer-person { transform: translate3d(calc(-50% + var(--px, 0px)), var(--py, 0), 0); }
 .stage::after { background: linear-gradient(90deg, rgba(41,40,39,.30), transparent 40%), linear-gradient(0deg, rgba(41,40,39,.25), transparent 35%); }
 @media (max-width: 640px) { .stage .layer-person { height: 88%; } }
+
+/* Hero composition: rule of thirds — subject on the right third line, eyes on the upper third */
+.stage .layer-person { left: 66.6%; bottom: -32%; height: 106%; }
+.g4 { right: 4%; left: auto; top: 7%; bottom: auto; }
+@media (max-width: 640px) {
+  .stage .layer-person { left: 62%; bottom: -26%; height: 100%; }
+  .g4 { top: auto; bottom: 12px; left: 12px; right: 12px; }
+}
+@media (max-width: 640px) { .g3 { display: none; } }
