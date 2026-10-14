@@ -367,3 +367,18 @@ body.is-playing .cover img { transform: scale(1.06); }
 }
 @media (max-width: 640px) { .panel-body { padding: 22px; } }
 .mini[hidden] { display: none; }
+
+/* ---------- Chicoree (OFL, by Liese Mars) for display type ---------- */
+@font-face { font-family: "Chicoree"; src: url("chicoree-bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Chicoree"; src: url("chicoree-bold-italic.woff2") format("woff2"); font-weight: 700; font-style: italic; font-display: swap; }
+:root { --display: "Chicoree", "Inter", system-ui, sans-serif; }
+h1, h2, h3, .logo, .stat b, .tabs [role=tab], .marquee-track span, .mini-txt b, .glass b, .g4 b, .foot-grid h4 {
+  font-family: var(--display); font-weight: 700;
+}
+h1 { letter-spacing: -0.01em; line-height: 1.02; }
+h2 { letter-spacing: -0.005em; }
+h3 { letter-spacing: 0; }
+.stat b { letter-spacing: 0; }
+.tabs [role=tab], .tabs [role=tab][aria-selected=true] { font-weight: 700; }
+.split .w { padding-bottom: .12em; margin-bottom: -.12em; }
+h1 { font-size: clamp(40px, 5.4vw, 70px); }
