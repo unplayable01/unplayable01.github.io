@@ -519,3 +519,6 @@ body { letter-spacing: 0.005em; }
   .hero-full .hero-side { margin-top: 6px; }
   .hero-full .layer-person { bottom: -44%; }
 }
+/* Full-screen hero: show the photo instantly; only the person, text and cards animate in */
+.js .hero-full .stage.reveal { opacity: 1; transform: none; transition: none; }
+.js .hero-full .hero-head .reveal { transition-delay: .15s; }
