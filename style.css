@@ -738,3 +738,17 @@ a.cover { display: block; }
 .t-link { display: block; color: inherit; }
 .t-thumb { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin-bottom: 16px; }
 .lightbox img { max-width: calc(100vw - 130px); max-height: calc(100vh - 112px); width: auto; height: auto; } @media (max-width: 640px) { .lightbox img { max-width: 100%; } }
+
+/* Mini music pill: always docked bottom-right, ready to play */
+.mini, .mini.on { left: auto; right: 20px; bottom: 20px; transform: none; gap: 10px; padding: 6px 14px 6px 6px; animation: miniIn .6s .8s var(--spring) both; }
+.mini .eq { width: 0; overflow: hidden; transition: width .3s; }
+.mini.playing .eq { width: 18px; }
+.mini-btn { width: 36px; height: 36px; font-size: 12px; flex: none; }
+@keyframes miniIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@media (max-width: 640px) {
+  .mini, .mini.on { right: 12px; bottom: 12px; padding: 5px 12px 5px 5px; }
+  .mini-txt { font-size: 12px; } .mini-txt span { font-size: 11px; }
+  .mini-btn { width: 32px; height: 32px; }
+  .hero-full .hero-head { bottom: 72px; }
+}
+@media (min-width: 1101px) { .hero-full .g3 { bottom: 14%; } }

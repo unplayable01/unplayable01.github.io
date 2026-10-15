@@ -131,8 +131,9 @@
     document.body.classList.toggle('is-playing', playing);
     trackBtns.forEach(function (b) { var on = playing && b === btnFor(cur); b.classList.toggle('is-playing', on);
       b.setAttribute('aria-label', (on ? 'Pause ' : 'Play ') + b.querySelector('.t-name').textContent); });
-    if (cur > -1 && mini) { mini.hidden = false; requestAnimationFrame(function () { mini.classList.add('on'); }); miniName.textContent = playlist[cur].name; }
-    if (miniBtn) { miniBtn.textContent = playing ? '❚❚' : '▶'; miniBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play'); }
+    if (cur > -1 && mini) { miniName.textContent = playlist[cur].name; var sub = mini.querySelector('[data-mini-sub]'); if (sub) sub.textContent = 'Tilt Tilt Boom'; }
+    if (mini) mini.classList.toggle('playing', playing);
+    if (miniBtn) { miniBtn.textContent = playing ? '❚❚' : '▶'; miniBtn.setAttribute('aria-label', playing ? 'Pause the soundtrack' : 'Play the Tilt Tilt Boom soundtrack'); }
   }
   function play(i) {
     if (i === cur) { audio.paused ? audio.play() : audio.pause(); return; }
@@ -144,7 +145,7 @@
   ['play', 'pause', 'ended'].forEach(function (ev) { audio.addEventListener(ev, sync); });
   audio.addEventListener('timeupdate', function () { var b = btnFor(cur); if (b && audio.duration) b.querySelector('.t-bar i').style.width = (audio.currentTime / audio.duration * 100) + '%'; });
   audio.addEventListener('ended', function () { if (cur < playlist.length - 1) play(cur + 1); });
-  if (miniBtn) miniBtn.addEventListener('click', function () { if (cur > -1) play(cur); });
+  if (miniBtn) miniBtn.addEventListener('click', function () { play(cur > -1 ? cur : 0); });
   document.querySelectorAll('[data-play-ttb]').forEach(function (b) { b.addEventListener('click', function () { play(cur > -1 ? cur : 0); }); });
 })();
 
