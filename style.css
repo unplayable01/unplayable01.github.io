@@ -752,3 +752,15 @@ a.cover { display: block; }
   .hero-full .hero-head { bottom: 72px; }
 }
 @media (min-width: 1101px) { .hero-full .g3 { bottom: 14%; } }
+
+/* Music pill: centred at the bottom and larger */
+.mini, .mini.on { left: 50%; right: auto; bottom: 22px; translate: -50% 0; gap: 14px; padding: 8px 22px 8px 8px; font-size: 15px; }
+.mini-btn { width: 46px; height: 46px; font-size: 15px; }
+.mini-txt { font-size: 15px; } .mini-txt span { font-size: 13px; }
+.mini.playing .eq { width: 22px; }
+@media (max-width: 640px) {
+  .mini, .mini.on { bottom: 14px; padding: 6px 18px 6px 6px; }
+  .mini-btn { width: 40px; height: 40px; }
+  .mini-txt { font-size: 14px; } .mini-txt span { font-size: 12px; }
+  .hero-full .hero-head { bottom: 84px; }
+}
