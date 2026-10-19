@@ -68,7 +68,7 @@ a:hover .arr, button:hover .arr { transform: translateX(4px); }
 body.is-playing .btn-wine .play-ico { width: 10px; height: 12px; border: 0; background: linear-gradient(90deg, currentColor 0 35%, transparent 35% 65%, currentColor 65%); }
 
 /* ---------- Nav ---------- */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: 1000; border-bottom: 1px solid transparent; transition: background-color .3s, border-color .3s, backdrop-filter .3s; }
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 1000; border-bottom: 1px solid transparent; transition: background-color .3s, border-color .3s; }
 .nav.scrolled { background: rgba(242,240,235,.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom-color: var(--mist); }
 .nav-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 560; letter-spacing: -0.02em; }
@@ -802,3 +802,16 @@ a.cover { display: block; }
 .timeline.hs-on .t-card { flex: 0 0 min(440px, 78vw); }
 .hs-bar { height: 2px; margin-top: 28px; border-radius: 2px; background: var(--mist); overflow: hidden; }
 .hs-bar i { display: block; height: 100%; background: var(--violet); transform: scaleX(0); transform-origin: left; }
+
+/* Custom cursor: rounded arrow + triangle sparkles (added by script.js for mouse users who allow motion) */
+.cursor-arrow { position: fixed; left: 0; top: 0; z-index: 3000; width: 0; height: 0; pointer-events: none; opacity: 0; transition: opacity .25s; }
+.cursor-on .cursor-arrow { opacity: 1; }
+.ca-tilt { position: absolute; left: -10px; top: -6px; width: 34px; height: 34px; transform-origin: 10px 6px; filter: drop-shadow(0 3px 5px rgba(30, 10, 25, .32)); }
+.ca-tilt svg { display: block; }
+.cursor-arrow .s1, .cursor-arrow .s2 { transition: stop-color .3s; }
+.cursor-arrow.hot .s1 { stop-color: #C9B8FF; }
+.cursor-arrow.hot .s2 { stop-color: #8E6BD0; }
+.cursor-tri { position: fixed; z-index: 2998; pointer-events: none; margin: -4px 0 0 -4px; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.has-cursor, .has-cursor * { cursor: none !important; }
+.has-cursor.cursor-native, .has-cursor.cursor-native * { cursor: auto !important; }
+.cursor-native .cursor-arrow { opacity: 0 !important; }

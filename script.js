@@ -264,3 +264,86 @@ var loadMotion = (function () {
     }, opts);
   }
 })();
+
+/* Custom cursor (mouse only, Anime.js): a chunky rounded arrow in wine. It swings from its tip as you move, bounces when it lands on
+   something clickable (and turns lilac), squishes on click, and sheds little triangle sparkles from its tail, and bursts them from its tip on click. Videos and form fields get the normal cursor back. */
+(function () {
+  if (!matchMedia('(pointer: fine)').matches || !matchMedia('(hover: hover)').matches || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var root = document.documentElement;
+  var CLICK = 'a, button, summary, label, .track, .ph-open';
+  var NATIVE = 'video, audio, input, textarea, select';
+  var COLORS = ['#6E2F4A', '#7A5AA6', '#D4C7FF', '#E58AB4', '#F2D7E0'];
+  var SHAPE = 'M86 58 L206 140 L128 152 L90 204 Z';
+  var ARROW = '<svg viewBox="0 0 256 256" width="34" height="34" aria-hidden="true">' +
+    '<defs><linearGradient id="caG" x1="0" y1="0" x2="1" y2="1"><stop class="s1" offset="0" stop-color="#8F456B"/><stop class="s2" offset="1" stop-color="#6E2F4A"/></linearGradient></defs>' +
+    '<path d="' + SHAPE + '" fill="#fff" stroke="#fff" stroke-width="50" stroke-linejoin="round"/>' +
+    '<path d="' + SHAPE + '" fill="url(#caG)" stroke="url(#caG)" stroke-width="30" stroke-linejoin="round"/>' +
+    '<path d="M96 82 L146 116" stroke="#fff" stroke-opacity=".4" stroke-width="9" stroke-linecap="round"/></svg>';
+  var EASE_BACK = 'outElastic(1, .5)';
+  var REAR = [4, 19];   /* the arrow's tail, in px from its tip at rest */
+
+  import('./vendor/anime.esm.min.js').then(function (a) {
+    function make(cls, parent, tag) { var e = document.createElement(tag || 'div'); e.className = cls; (parent || document.body).appendChild(e); return e; }
+    var box = make('cursor-arrow'), tilt = make('ca-tilt', box);
+    box.setAttribute('aria-hidden', 'true'); tilt.innerHTML = ARROW;
+    var pos = a.createAnimatable(box, { x: 90, y: 90, ease: 'out(2)' });
+    var swing = a.createAnimatable(tilt, { rotate: 240, scale: 260, ease: 'out(3)' });
+    var on = false, hot = false, down = false, idle, lastSpark = 0, lx = 0, ly = 0, px = 0, py = 0, live = 0;
+
+    function base() { return (hot ? -12 : 0); }
+    function scaleNow() { return (hot ? 1.22 : 1) * (down ? 0.82 : 1); }
+    function settle() { swing.rotate(base(), 750, EASE_BACK); swing.scale(scaleNow(), 450, EASE_BACK); }
+    function show(x, y) { px = lx = x; py = ly = y; pos.x(x, 0); pos.y(y, 0); root.classList.add('has-cursor', 'cursor-on'); on = true; }
+
+    /* a little triangle that flies out, spins and fades */
+    function spark(x, y, dx, dy) {
+      if (live > 70) return; live++;
+      var t = make('cursor-tri'), s = 6 + Math.random() * 9;
+      t.style.left = x + 'px'; t.style.top = y + 'px'; t.style.width = t.style.height = s + 'px'; t.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+      var r0 = Math.random() * 360;
+      a.animate(t, { x: dx, y: dy, rotate: [r0, r0 + (Math.random() - 0.5) * 600], scale: [1, 0], opacity: [1, 0], duration: 650 + Math.random() * 550, ease: 'out(2)', onComplete: function () { live--; t.remove(); } });
+    }
+
+    addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      if (!on) { show(e.clientX, e.clientY); return; }
+      root.classList.add('cursor-on'); px = e.clientX; py = e.clientY;
+      pos.x(px); pos.y(py);
+      /* swing like it hangs from its tip: moving right trails the body left, and the other way round */
+      var vx = e.movementX || 0, vy = e.movementY || 0;
+      swing.rotate(base() + Math.max(-30, Math.min(30, -vx * 0.9 + vy * 0.25)));
+      clearTimeout(idle); idle = setTimeout(settle, 90);
+      var now = performance.now();
+      if (now - lastSpark > 45 && Math.hypot(px - lx, py - ly) > 16) {
+        lastSpark = now; lx = px; ly = py;
+        /* shed from the tail (turned with the swing), drifting back the way we came */
+        var rot = (swing.rotate() || 0) * Math.PI / 180, sc = swing.scale() || 1, ox = REAR[0] * sc, oy = REAR[1] * sc, mag = Math.hypot(vx, vy) || 1, far = 26 + Math.random() * 34;
+        spark(px + ox * Math.cos(rot) - oy * Math.sin(rot), py + ox * Math.sin(rot) + oy * Math.cos(rot),
+          -vx / mag * far + (Math.random() - 0.5) * 18, -vy / mag * far + (Math.random() - 0.5) * 18 + 8);
+      }
+    }, { passive: true });
+    document.addEventListener('mouseleave', function () { root.classList.remove('cursor-on'); });
+    document.addEventListener('mouseenter', function () { if (on) root.classList.add('cursor-on'); });
+
+    document.addEventListener('pointerover', function (e) {
+      var t = e.target.closest ? e.target : e.target.parentElement;
+      if (!t) return;
+      var native = !!t.closest(NATIVE);
+      root.classList.toggle('cursor-native', native);
+      var h = !native && !!t.closest(CLICK);
+      if (h !== hot) { hot = h; box.classList.toggle('hot', hot); settle(); }
+    });
+    addEventListener('pointerdown', function () {
+      down = true; settle();
+      for (var i = 0; i < 14; i++) { var ang = i / 14 * Math.PI * 2 + Math.random() * 0.4, d = 55 + Math.random() * 70; spark(px, py, Math.cos(ang) * d, Math.sin(ang) * d); }
+    });
+    addEventListener('pointerup', function () { down = false; settle(); });
+
+    /* keep the arrow where it was across page loads, so it doesn't vanish until the mouse moves */
+    addEventListener('pagehide', function () { try { sessionStorage.setItem('cur', px + ',' + py); } catch (e) {} });
+    try {
+      var saved = (sessionStorage.getItem('cur') || '').split(',').map(Number);
+      if (saved.length === 2 && isFinite(saved[0]) && isFinite(saved[1])) show(saved[0], saved[1]);
+    } catch (e) {}
+  }).catch(function () {});
+})();
