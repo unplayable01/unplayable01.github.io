@@ -765,15 +765,19 @@ a.cover { display: block; }
   .hero-full .hero-head { bottom: 84px; }
 }
 
-/* Page transitions: cross-fade between pages, nav and music pill stay put (Chromium / Safari 18.2+; others just cut) */
+/* Page transitions: the old page shrinks back into a wine backdrop while the new one wipes up over it.
+   Nav stays put. Chromium / Safari 18.2+; other browsers just cut. */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition { navigation: auto; }
   .nav { view-transition-name: nav; }
-  ::view-transition-old(root) { animation: .22s var(--ease) both vt-out; }
-  ::view-transition-new(root) { animation: .38s var(--ease) both vt-in; }
+  ::view-transition { background: var(--wine); }
+  ::view-transition-image-pair(root) { isolation: isolate; }
+  ::view-transition-old(root), ::view-transition-new(root) { mix-blend-mode: normal; animation-duration: .7s; animation-timing-function: cubic-bezier(.76, 0, .24, 1); animation-fill-mode: both; }
+  ::view-transition-old(root) { animation-name: vt-out; }
+  ::view-transition-new(root) { animation-name: vt-in; }
 }
-@keyframes vt-out { to { opacity: 0; } }
-@keyframes vt-in { from { opacity: 0; transform: translateY(10px); } }
+@keyframes vt-out { to { transform: scale(.94) translateY(-4%); filter: brightness(.6); } }
+@keyframes vt-in { from { clip-path: inset(100% 0 0 0 round 28px); } to { clip-path: inset(0 0 0 0 round 0); } }
 
 /* Timeline: a line draws down the left edge as you scroll; cards get a violet outline once it reaches them */
 .timeline { position: relative; }
@@ -782,3 +786,19 @@ a.cover { display: block; }
 .tl-line { background: var(--violet); transform: scaleY(0); transform-origin: top; }
 .timeline .t-card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px solid var(--violet); opacity: 0; transition: opacity .4s var(--ease); pointer-events: none; }
 .timeline .t-card.lit::before { opacity: 1; }
+
+/* Hero scroll-zoom: script.js sets --hp (0 at the top of the page, 1 once the hero has scrolled away) */
+.hero-full .layer-photo { scale: calc(1 + var(--hp, 0) * .3); }
+.hero-full .hero-shade { box-shadow: inset 0 0 0 100vmax rgba(20, 12, 22, calc(var(--hp, 0) * .6)); }
+.hero-full .hero-head { translate: 0 calc(var(--hp, 0) * -80px); opacity: calc(1 - var(--hp, 0) * 1.7); }
+.hero-full .hero-head.away { visibility: hidden; }
+.hero-full .glass { scale: calc(1 - var(--hp, 0) * .18); }
+
+/* Experience: on desktop the cards pin and slide sideways as you scroll (script.js builds .hs around the timeline) */
+.hs { position: relative; }
+.hs-sticky { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding-top: 68px; }
+.timeline.hs-on { display: flex; gap: 16px; width: max-content; }
+.timeline.hs-on::before, .timeline.hs-on > .tl-line { display: none; }
+.timeline.hs-on .t-card { flex: 0 0 min(440px, 78vw); }
+.hs-bar { height: 2px; margin-top: 28px; border-radius: 2px; background: var(--mist); overflow: hidden; }
+.hs-bar i { display: block; height: 100%; background: var(--violet); transform: scaleX(0); transform-origin: left; }

@@ -205,11 +205,55 @@ var loadMotion = (function () {
   document.addEventListener('keydown', function (e) { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(cur - 1, -1); if (e.key === 'ArrowRight') show(cur + 1, 1); });
 })();
 
-/* Experience timeline: line draws with scroll, cards light up as it reaches them */
+/* Home hero: scroll-linked push-in (photo zooms, shade darkens, headline lifts away) */
 (function () {
-  var tl = document.querySelector('.timeline');
-  if (!tl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var stage = document.querySelector('.hero-full [data-stage]'), head = document.querySelector('.hero-full .hero-head');
+  if (!stage || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   loadMotion().then(function (m) {
+    m.scroll(function (p) {
+      stage.style.setProperty('--hp', p.toFixed(4));
+      if (head) head.classList.toggle('away', p > 0.6);
+    }, { target: stage, offset: ['start start', 'end start'] });
+  }).catch(function () {});
+})();
+
+/* Experience: desktop pins the section and slides the cards sideways; narrow screens get a line that draws down the cards */
+(function () {
+  var tl = document.querySelector('.timeline'), section = tl && tl.parentNode;
+  if (!tl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var wide = window.matchMedia('(min-width: 901px)');
+  var wasWide = wide.matches;
+  wide.addEventListener('change', function () { if (wide.matches !== wasWide) location.reload(); });
+  loadMotion().then(function (m) { (wasWide ? sideways : drawLine)(m); }).catch(function () {});
+
+  function sideways(m) {
+    var hs = document.createElement('div'), sticky = document.createElement('div'), bar = document.createElement('div'), fill = document.createElement('i');
+    hs.className = 'hs'; sticky.className = 'hs-sticky'; bar.className = 'hs-bar'; bar.setAttribute('aria-hidden', 'true');
+    section.insertBefore(hs, tl); hs.appendChild(sticky); sticky.appendChild(tl); bar.appendChild(fill); sticky.appendChild(bar);
+    tl.classList.add('hs-on');
+    var stop = [], timer;
+    function layout() {
+      stop.forEach(function (s) { s(); }); stop = [];
+      tl.style.transform = ''; fill.style.transform = '';
+      /* full-bleed strip, with the first card lined up under the page headings */
+      var cs = getComputedStyle(section), left = section.getBoundingClientRect().left + parseFloat(cs.paddingLeft) + window.scrollX;
+      hs.style.marginLeft = -left + 'px';
+      hs.style.width = document.documentElement.clientWidth + 'px';
+      sticky.style.paddingLeft = sticky.style.paddingRight = left + 'px';
+      var travel = Math.max(0, tl.scrollWidth + left * 2 - document.documentElement.clientWidth);
+      hs.style.height = (sticky.offsetHeight + travel) + 'px';
+      if (!travel) return;
+      var opts = { target: hs, offset: ['start start', 'end end'] };
+      stop.push(m.scroll(m.animate(tl, { x: [0, -travel] }, { ease: 'linear' }), opts));
+      stop.push(m.scroll(m.animate(fill, { scaleX: [0, 1] }, { ease: 'linear' }), opts));
+    }
+    layout();
+    addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(layout, 150); });
+    addEventListener('load', layout);
+    if (document.fonts) document.fonts.ready.then(layout);
+  }
+
+  function drawLine(m) {
     var line = document.createElement('i'); line.className = 'tl-line'; line.setAttribute('aria-hidden', 'true'); tl.appendChild(line);
     var cards = Array.prototype.filter.call(tl.children, function (c) { return c.classList.contains('t-card'); });
     var opts = { target: tl, offset: ['start 75%', 'end 60%'] };
@@ -218,5 +262,5 @@ var loadMotion = (function () {
       var y = p * tl.offsetHeight;
       cards.forEach(function (c) { c.classList.toggle('lit', c.offsetTop + 24 <= y); });
     }, opts);
-  }).catch(function () {});
+  }
 })();
