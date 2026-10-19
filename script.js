@@ -1,3 +1,9 @@
+/* Motion (motion.dev) loads on demand for the lightbox and timeline; both work without it */
+var loadMotion = (function () {
+  var p;
+  return function () { return p || (p = import('https://cdn.jsdelivr.net/npm/motion@12.23.12/+esm')); };
+})();
+
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(pointer: fine)').matches;
@@ -157,13 +163,60 @@
   lb.innerHTML = '<img alt=""><button class="lb-btn lb-close" aria-label="Close">×</button><button class="lb-btn lb-prev" aria-label="Previous photo">‹</button><button class="lb-btn lb-next" aria-label="Next photo">›</button><span class="lb-count"></span>';
   document.body.appendChild(lb);
   var img = lb.querySelector('img'), count = lb.querySelector('.lb-count'), cur = 0, last = null;
-  function show(i) { cur = (i + btns.length) % btns.length; var b = btns[cur]; img.src = b.dataset.full; img.alt = b.querySelector('img').alt; count.textContent = (cur + 1) + ' / ' + btns.length; }
-  function open(i) { last = document.activeElement; show(i); lb.hidden = false; document.body.style.overflow = 'hidden'; lb.querySelector('.lb-close').focus(); }
-  function close() { lb.hidden = true; document.body.style.overflow = ''; if (last) last.focus(); }
+  var mo = null, closing = 0;
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) loadMotion().then(function (m) { mo = m; }).catch(function () {});
+  var spring = { type: 'spring', duration: 0.55, bounce: 0.18 };
+  function show(i, dir) {
+    cur = (i + btns.length) % btns.length; var b = btns[cur];
+    img.src = b.dataset.full; img.alt = b.querySelector('img').alt; count.textContent = (cur + 1) + ' / ' + btns.length;
+    if (mo && dir) mo.animate(img, { opacity: [0, 1], x: [dir * 40, 0] }, { duration: 0.35, ease: [0.22, 1, 0.36, 1] });
+  }
+  function open(i) {
+    last = document.activeElement; closing++; show(i); lb.hidden = false; lb.style.opacity = '';
+    document.body.style.overflow = 'hidden'; lb.querySelector('.lb-close').focus();
+    if (!mo) return;
+    mo.animate(lb, { opacity: [0, 1] }, { duration: 0.25 });
+    /* grow the photo out of its thumbnail once it has loaded */
+    var from = btns[i].getBoundingClientRect();
+    img.style.opacity = 0;
+    img.decode().catch(function () {}).then(function () {
+      var to = img.getBoundingClientRect();
+      mo.animate(img, {
+        opacity: [0, 1],
+        x: [from.left + from.width / 2 - (to.left + to.width / 2), 0],
+        y: [from.top + from.height / 2 - (to.top + to.height / 2), 0],
+        scale: [from.width / (to.width || 1), 1]
+      }, spring);
+    });
+  }
+  function close() {
+    document.body.style.overflow = ''; if (last) last.focus();
+    if (!mo) { lb.hidden = true; return; }
+    var token = ++closing;
+    mo.animate(lb, { opacity: 0 }, { duration: 0.2 }).then(function () {
+      if (token === closing) { lb.hidden = true; lb.style.opacity = ''; }
+    });
+  }
   btns.forEach(function (b, i) { b.addEventListener('click', function () { open(i); }); });
   lb.querySelector('.lb-close').addEventListener('click', close);
-  lb.querySelector('.lb-prev').addEventListener('click', function () { show(cur - 1); });
-  lb.querySelector('.lb-next').addEventListener('click', function () { show(cur + 1); });
+  lb.querySelector('.lb-prev').addEventListener('click', function () { show(cur - 1, -1); });
+  lb.querySelector('.lb-next').addEventListener('click', function () { show(cur + 1, 1); });
   lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
-  document.addEventListener('keydown', function (e) { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+  document.addEventListener('keydown', function (e) { if (lb.hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(cur - 1, -1); if (e.key === 'ArrowRight') show(cur + 1, 1); });
+})();
+
+/* Experience timeline: line draws with scroll, cards light up as it reaches them */
+(function () {
+  var tl = document.querySelector('.timeline');
+  if (!tl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  loadMotion().then(function (m) {
+    var line = document.createElement('i'); line.className = 'tl-line'; line.setAttribute('aria-hidden', 'true'); tl.appendChild(line);
+    var cards = Array.prototype.filter.call(tl.children, function (c) { return c.classList.contains('t-card'); });
+    var opts = { target: tl, offset: ['start 75%', 'end 60%'] };
+    m.scroll(m.animate(line, { scaleY: [0, 1] }, { ease: 'linear' }), opts);
+    m.scroll(function (p) {
+      var y = p * tl.offsetHeight;
+      cards.forEach(function (c) { c.classList.toggle('lit', c.offsetTop + 24 <= y); });
+    }, opts);
+  }).catch(function () {});
 })();

@@ -764,3 +764,21 @@ a.cover { display: block; }
   .mini-txt { font-size: 14px; } .mini-txt span { font-size: 12px; }
   .hero-full .hero-head { bottom: 84px; }
 }
+
+/* Page transitions: cross-fade between pages, nav and music pill stay put (Chromium / Safari 18.2+; others just cut) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  .nav { view-transition-name: nav; }
+  ::view-transition-old(root) { animation: .22s var(--ease) both vt-out; }
+  ::view-transition-new(root) { animation: .38s var(--ease) both vt-in; }
+}
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in { from { opacity: 0; transform: translateY(10px); } }
+
+/* Timeline: a line draws down the left edge as you scroll; cards get a violet outline once it reaches them */
+.timeline { position: relative; }
+.timeline::before, .tl-line { content: ""; position: absolute; left: -12px; top: 0; bottom: 0; width: 2px; border-radius: 2px; }
+.timeline::before { background: var(--mist); }
+.tl-line { background: var(--violet); transform: scaleY(0); transform-origin: top; }
+.timeline .t-card::before { content: ""; position: absolute; inset: -1px; border-radius: inherit; border: 1px solid var(--violet); opacity: 0; transition: opacity .4s var(--ease); pointer-events: none; }
+.timeline .t-card.lit::before { opacity: 1; }
