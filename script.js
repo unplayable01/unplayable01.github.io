@@ -217,52 +217,22 @@ var loadMotion = (function () {
   }).catch(function () {});
 })();
 
-/* Experience: desktop pins the section and slides the cards sideways; narrow screens get a line that draws down the cards */
+/* Experience timeline: the line draws down the page as you scroll and each dot lights up when the line reaches it */
 (function () {
-  var tl = document.querySelector('.timeline'), section = tl && tl.parentNode;
-  if (!tl || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var wide = window.matchMedia('(min-width: 901px)');
-  var wasWide = wide.matches;
-  wide.addEventListener('change', function () { if (wide.matches !== wasWide) location.reload(); });
-  loadMotion().then(function (m) { (wasWide ? sideways : drawLine)(m); }).catch(function () {});
-
-  function sideways(m) {
-    var hs = document.createElement('div'), sticky = document.createElement('div'), bar = document.createElement('div'), fill = document.createElement('i');
-    hs.className = 'hs'; sticky.className = 'hs-sticky'; bar.className = 'hs-bar'; bar.setAttribute('aria-hidden', 'true');
-    section.insertBefore(hs, tl); hs.appendChild(sticky); sticky.appendChild(tl); bar.appendChild(fill); sticky.appendChild(bar);
-    tl.classList.add('hs-on');
-    var stop = [], timer;
-    function layout() {
-      stop.forEach(function (s) { s(); }); stop = [];
-      tl.style.transform = ''; fill.style.transform = '';
-      /* full-bleed strip, with the first card lined up under the page headings */
-      var cs = getComputedStyle(section), left = section.getBoundingClientRect().left + parseFloat(cs.paddingLeft) + window.scrollX;
-      hs.style.marginLeft = -left + 'px';
-      hs.style.width = document.documentElement.clientWidth + 'px';
-      sticky.style.paddingLeft = sticky.style.paddingRight = left + 'px';
-      var travel = Math.max(0, tl.scrollWidth + left * 2 - document.documentElement.clientWidth);
-      hs.style.height = (sticky.offsetHeight + travel) + 'px';
-      if (!travel) return;
-      var opts = { target: hs, offset: ['start start', 'end end'] };
-      stop.push(m.scroll(m.animate(tl, { x: [0, -travel] }, { ease: 'linear' }), opts));
-      stop.push(m.scroll(m.animate(fill, { scaleX: [0, 1] }, { ease: 'linear' }), opts));
-    }
-    layout();
-    addEventListener('resize', function () { clearTimeout(timer); timer = setTimeout(layout, 150); });
-    addEventListener('load', layout);
-    if (document.fonts) document.fonts.ready.then(layout);
-  }
-
-  function drawLine(m) {
-    var line = document.createElement('i'); line.className = 'tl-line'; line.setAttribute('aria-hidden', 'true'); tl.appendChild(line);
-    var cards = Array.prototype.filter.call(tl.children, function (c) { return c.classList.contains('t-card'); });
-    var opts = { target: tl, offset: ['start 75%', 'end 60%'] };
-    m.scroll(m.animate(line, { scaleY: [0, 1] }, { ease: 'linear' }), opts);
+  var tl = document.querySelector('.vtl');
+  if (!tl) return;
+  var items = Array.prototype.slice.call(tl.querySelectorAll('.vt-item'));
+  var fill = document.createElement('i'); fill.className = 'vt-fill'; fill.setAttribute('aria-hidden', 'true'); tl.appendChild(fill);
+  function all() { fill.style.transform = 'scaleY(1)'; items.forEach(function (i) { i.classList.add('lit'); }); }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { all(); return; }
+  loadMotion().then(function (m) {
+    var opts = { target: tl, offset: ['start 70%', 'end 60%'] };
+    m.scroll(m.animate(fill, { scaleY: [0, 1] }, { ease: 'linear' }), opts);
     m.scroll(function (p) {
       var y = p * tl.offsetHeight;
-      cards.forEach(function (c) { c.classList.toggle('lit', c.offsetTop + 24 <= y); });
+      items.forEach(function (it) { it.classList.toggle('lit', it.offsetTop + it.offsetHeight / 2 <= y); });
     }, opts);
-  }
+  }).catch(all);
 })();
 
 /* Custom cursor (mouse only, Anime.js): a chunky rounded arrow in wine. It swings from its tip as you move, bounces when it lands on
@@ -346,4 +316,19 @@ var loadMotion = (function () {
       if (saved.length === 2 && isFinite(saved[0]) && isFinite(saved[1])) show(saved[0], saved[1]);
     } catch (e) {}
   }).catch(function () {});
+})();
+
+/* Projects: a play button and "Click to play" label on each video, so it's obvious they're meant to be clicked */
+(function () {
+  document.querySelectorAll('.panel-media video').forEach(function (v) {
+    var hint = document.createElement('button');
+    hint.type = 'button'; hint.className = 'play-hint';
+    hint.setAttribute('aria-label', 'Play video' + (v.getAttribute('aria-label') ? ': ' + v.getAttribute('aria-label') : ''));
+    hint.innerHTML = '<span class="ph-disc"><i></i></span><em>Click to play</em>';
+    v.parentNode.appendChild(hint);
+    function sync() { hint.classList.toggle('gone', !v.paused && !v.ended); }
+    hint.addEventListener('click', function () { v.play(); });
+    ['play', 'playing', 'pause', 'ended'].forEach(function (ev) { v.addEventListener(ev, sync); });
+    sync();
+  });
 })();
